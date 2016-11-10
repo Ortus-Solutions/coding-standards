@@ -71,8 +71,8 @@ This guide was re-purposed for the Ortus Solutions team from the original author
     ```
 
 > **Please make note of the spacing and alignments.**
-> 
-    **[[⬆]](#TOC)**
+
+**[[⬆]](#TOC)**
 
 ## <a name='objects'>Objects</a>
 
