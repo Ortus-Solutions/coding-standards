@@ -64,6 +64,9 @@ At Ortus, our preference is to levarage Hibernate ORM with additional SQL additi
     saved_url
 ```
 
+
+**[[⬆]](#TOC)**
+
 ## <a name="tables">Table Conventions</a>
 
 -   Tables are usually entities you are modeling for persistence. So make sure the names are in proper English and carry natural meanings. These names should make sense and should be descriptive.
@@ -110,6 +113,8 @@ ISVacationDay
 * Do not use prefixes like `tbl,db` as they are EXTREMELY redundant and useless.
 * All tables should have at least ONE primary key.
 
+
+**[[⬆]](#TOC)**
 
 ## <a name="columns">Column Conventions</a>
 
@@ -161,13 +166,18 @@ date_updated
 ```
 
 
+**[[⬆]](#TOC)**
 
 ## <a name="indexes">Index Conventions</a>
 
 * Always prefix all index names with `idx_` to distinguish it as an index.
 * The names of the index should at least convey the columns it reaches or at least the purpose of the index.
 
+**[[⬆]](#TOC)**
+
 ## <a name="views">Views Conventions</a>
 
 * Always try to use names that make sense and are descriptive for the views. Avoid acronyms and abbreviations if at all possible. If acronyms are used, then make sure to capitalize them. Abbreviations used should be well known abbreviations and should be camel cased. 
 * All views should be prefixed with `vw_` in order to distinguish them in SQL statements from regular database tables.
+
+**[[⬆]](#TOC)**

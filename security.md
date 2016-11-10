@@ -35,6 +35,8 @@ Thanks to Roger Benningfield:
 
 There is a time for using `GET` and a time for using `POST,PUT,DELETE` and **ALL OF THEM should not trust the client data**. 
 
+**[[⬆]](#TOC)**
+
 ## <a name="protecting">Protecting Your Code</a>
 
 As for security, FORM variables are just as easy to modify as URL variables. However, there are several ways to protect from attacks, SQL injection or plain mischief:
@@ -46,3 +48,5 @@ As for security, FORM variables are just as easy to modify as URL variables. How
 * Try to always use a custom error page that cannot display to the user the entire error message. This will hide your internal information and encapsulate your errors.
 * It is the role of the developer to protect the database and its contents, no matter if you are using a POST or a GET.
 * Do not trust the client on the incoming data; always do data type checking and authorization/authentication checking on the server-side.
+
+**[[⬆]](#TOC)**
