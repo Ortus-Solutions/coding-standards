@@ -24,16 +24,10 @@ This guide was re-purposed for the Ortus Solutions team from the original author
   1. [Accessors](#accessors)
   1. [Constructors](#constructors)
   1. [Events](#events)
-  1. [Modules](#modules)
   1. [jQuery](#jquery)
   1. [ES5 Compatibility](#es5)
-  1. [Testing](#testing)
   1. [Performance](#performance)
   1. [Resources](#resources)
-  1. [In the Wild](#in-the-wild)
-  1. [Translation](#translation)
-  1. [The JavaScript Style Guide Guide](#guide-guide)
-  1. [Contributors](#contributors)
   1. [License](#license)
 
 ## <a name='types'>Types</a>
@@ -107,7 +101,7 @@ This guide was re-purposed for the Ortus Solutions team from the original author
 
 > **Please make note of the spacing and alignments.**
 
-    **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 ## <a name='arrays'>Arrays</a>
 
@@ -118,7 +112,7 @@ This guide was re-purposed for the Ortus Solutions team from the original author
     var items = new Array();
 
     // good
-    var items = [];
+    var items = [ 1, 2, 3 ];
     ```
 
   - If you don't know array length use Array#push.
@@ -159,12 +153,14 @@ function trigger(){
 }
 ```
 
-    **[[⬆]](#TOC)**
+> Please note spacing when declaring arrays.
+
+**[[⬆]](#TOC)**
 
 
 ## <a name='strings'>Strings</a>
 
-  - Strings longer than 80 characters should be written across multiple lines using string concatenation.
+  - Strings longer than 80 characters should be written across multiple lines using string concatenation (`+`).
   - **Note**: If overused, long strings with concatenation could impact performance. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40)
 
     ```javascript
@@ -236,66 +232,69 @@ function trigger(){
     }
     ```
 
-    **[[⬆]](#TOC)**
+> Please note the whitespacing
+
+
+**[[⬆]](#TOC)**
 
 
 ## <a name='functions'>Functions</a>
 
   - Function expressions:
 
-    ```javascript
-    // anonymous function expression
-    var anonymous = function(){
-      return true;
-    };
+```javascript
+// anonymous function expression
+var anonymous = function(){
+	return true;
+};
 
-    // named function expression
-    var named = function named(){
-      return true;
-    };
+// named function expression
+var named = function named(){
+	return true;
+};
 
-    // immediately-invoked function expression (IIFE)
-    ( function(){
-      console.log( 'Welcome to the Internet. Please follow me.' );
-    } )();
-    ```
+// immediately-invoked function expression (IIFE)
+( function(){
+	console.log( 'Welcome to the Internet. Please follow me.' );
+} )();
+```
 
   - Never declare a function in a non-function block (if, while, etc). Assign the function to a variable instead. Browsers will allow you to do it, but they all interpret it differently, which is bad news bears.
   - **Note:** ECMA-262 defines a `block` as a list of statements. A function declaration is not a statement. [Read ECMA-262's note on this issue](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
 
-    ```javascript
-    // bad
-    if( currentUser ){
-      function test(){
-        console.log( 'Nope.' );
-      }
-    }
+```javascript
+// bad
+if( currentUser ){
+	function test(){
+		console.log( 'Nope.' );
+	}
+}
 
-    // good
-    if( currentUser ){
-      var test = function test(){
-        console.log( 'Yup.' );
-      };
-    }
-    ```
+// good
+if( currentUser ){
+	var test = function test(){
+		console.log( 'Yup.' );
+	};
+}
+```
 
   - Never name a parameter `arguments`, this will take precedence over the `arguments` object that is given to every function scope.
 
-    ```javascript
-    // bad
-    function nope( name, options, arguments ){
-      // ...stuff...
-    }
+```javascript
+// bad
+function nope( name, options, arguments ){
+  // ...stuff...
+}
 
-    // good
-    function yup( name, options, args ){
-      // ...stuff...
-    }
-    ```
+// good
+function yup( name, options, args ){
+  // ...stuff...
+}
+```
 
 > **Please make note of the spacing requirements**
 
-- If you have more than 4 arguments, then break them into separate lines for readability:
+- If you have more than 4 arguments, then break them into separate lines for readability, alongside the whitespacing:
 
 ```javascript
 // bad
@@ -340,7 +339,7 @@ function nope( name, options, test ){
 **Please note the space left between the method annotations and the argument annotations and the return annotations**
 
 
-    **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 
 
@@ -348,84 +347,84 @@ function nope( name, options, test ){
 
   - Use dot notation when accessing properties.
 
-    ```javascript
-    var luke = {
-      jedi  : true,
-      age   : 28
-    };
+```javascript
+var luke = {
+  jedi  : true,
+  age   : 28
+};
 
-    // bad, unless this is a dynamic variable
-    var isJedi = luke[ 'jedi' ];
+// bad, unless this is a dynamic variable
+var isJedi = luke[ 'jedi' ];
 
-    // good, as it is more legible
-    var isJedi = luke.jedi;
-    ```
+// good, as it is more legible
+var isJedi = luke.jedi;
+```
 
   - Use subscript notation `[]` when accessing properties with a variable.
 
-    ```javascript
-    var luke = {
-      jedi  : true,
-      age   : 28
-    };
+```javascript
+var luke = {
+	jedi  : true,
+	age   : 28
+};
 
-    function getProp(prop){
-      return luke[ prop ];
-    }
+function getProp(prop){
+  return luke[ prop ];
+}
 
-    var isJedi = getProp( 'jedi' );
-    ```
+var isJedi = getProp( 'jedi' );
+```
 
-    **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 
 ## <a name='variables'>Variables</a>
 
   - Always use `var` to declare variables. Not doing so will result in global variables. We want to avoid polluting the global namespace. Captain Planet warned us of that.
 
-    ```javascript
-    // bad
-    superPower = new SuperPower();
+```javascript
+// bad
+superPower = new SuperPower();
 
-    // good
-    var superPower = new SuperPower();
-    ```
+// good
+var superPower = new SuperPower();
+```
 
   - Use one `var` declaration for multiple variables and declare each variable on a newline. Try also to aling assignments for better readability.
 
-    ```javascript
-    // bad
-    var items = getItems();
-    var goSportsTeam = true;
-    var dragonball = 'z';
+```javascript
+// bad
+var items = getItems();
+var goSportsTeam = true;
+var dragonball = 'z';
 
-    // good
-    var items        = getItems(),
-        goSportsTeam = true,
-        dragonball   = 'z';
-    ```
+// good
+var items        = getItems(),
+    goSportsTeam = true,
+    dragonball   = 'z';
+```
 
   - Declare unassigned variables last. This is helpful when later on you might need to assign a variable depending on one of the previous assigned variables.
 
-    ```javascript
-    // bad
-    var i, len, dragonball,
-        items = getItems(),
-        goSportsTeam = true;
+```javascript
+// bad
+var i, len, dragonball,
+    items = getItems(),
+    goSportsTeam = true;
 
-    // bad
-    var i, items = getItems(),
-        dragonball,
-        goSportsTeam = true,
-        len;
+// bad
+var i, items = getItems(),
+    dragonball,
+    goSportsTeam = true,
+    len;
 
-    // good
-    var items        = getItems(),
-        goSportsTeam = true,
-        dragonball,
-        length,
-        i;
-    ```
+// good
+var items        = getItems(),
+    goSportsTeam = true,
+    dragonball,
+    length,
+    i;
+```
 
 **[[⬆]](#TOC)**
 
@@ -434,90 +433,90 @@ function nope( name, options, test ){
 
   - Variable declarations get hoisted to the top of their scope, their assignment does not.
 
-    ```javascript
-    // we know this wouldn't work (assuming there
-    // is no notDefined global variable)
-    function example(){
-      console.log( notDefined ); // => throws a ReferenceError
-    }
+```javascript
+// we know this wouldn't work (assuming there
+// is no notDefined global variable)
+function example(){
+	console.log( notDefined ); // => throws a ReferenceError
+}
 
-    // creating a variable declaration after you
-    // reference the variable will work due to
-    // variable hoisting. Note: the assignment
-    // value of `true` is not hoisted.
-    function example(){
-      console.log( declaredButNotAssigned ); // => undefined
-      var declaredButNotAssigned = true;
-    }
+// creating a variable declaration after you
+// reference the variable will work due to
+// variable hoisting. Note: the assignment
+// value of `true` is not hoisted.
+function example(){
+	console.log( declaredButNotAssigned ); // => undefined
+	var declaredButNotAssigned = true;
+}
 
-    // The interpreter is hoisting the variable
-    // declaration to the top of the scope.
-    // Which means our example could be rewritten as:
-    function example(){
-      var declaredButNotAssigned;
-      console.log( declaredButNotAssigned ); // => undefined
-      declaredButNotAssigned = true;
-    }
-    ```
+// The interpreter is hoisting the variable
+// declaration to the top of the scope.
+// Which means our example could be rewritten as:
+function example(){
+	var declaredButNotAssigned;
+	console.log( declaredButNotAssigned ); // => undefined
+	declaredButNotAssigned = true;
+}
+```
 
   - Anonymous function expressions hoist their variable name, but not the function assignment.
 
-    ```javascript
-    function example(){
-      console.log( anonymous ); // => undefined
-
-      anonymous(); // => TypeError anonymous is not a function
-
-      var anonymous = function(){
-        console.log( 'anonymous function expression' );
-      };
-    }
-    ```
+```javascript
+function example(){
+	console.log( anonymous ); // => undefined
+	
+	anonymous(); // => TypeError anonymous is not a function
+	
+	var anonymous = function(){
+		console.log( 'anonymous function expression' );
+	};
+}
+```
 
   - Named function expressions hoist the variable name, not the function name or the function body.
 
-    ```javascript
-    function example(){
-      console.log( named ); // => undefined
+```javascript
+function example(){
+	console.log( named ); // => undefined
+	
+	named(); // => TypeError named is not a function
+	
+	superPower(); // => ReferenceError superPower is not defined
+	
+	var named = function superPower(){
+		console.log( 'Flying' );
+	};
 
-      named(); // => TypeError named is not a function
-
-      superPower(); // => ReferenceError superPower is not defined
-
-      var named = function superPower(){
-        console.log( 'Flying' );
-      };
-
-
-      // the same is true when the function name
-      // is the same as the variable name.
-      function example(){
-        console.log( named ); // => undefined
-
-        named(); // => TypeError named is not a function
-
-        var named = function named(){
-          console.log( 'named' );
-        };
-      }
-    }
-    ```
+	
+	// the same is true when the function name
+	// is the same as the variable name.
+	function example(){
+		console.log( named ); // => undefined
+		
+		named(); // => TypeError named is not a function
+		
+		var named = function named(){
+			console.log( 'named' );
+		};
+	}
+}
+```
 
   - Function declarations hoist their name and the function body.
 
-    ```javascript
-    function example(){
-      superPower(); // => Flying
-
-      function superPower(){
-        console.log( 'Flying' );
-      }
-    }
-    ```
+```javascript
+function example(){
+	superPower(); // => Flying
+	
+	function superPower(){
+		console.log( 'Flying' );
+	}
+}
+```
 
   - For more information refer to [JavaScript Scoping & Hoisting](http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting) by [Ben Cherry](http://www.adequatelygood.com/)
 
-    **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 
 ## <a name='conditionals'>Conditional Expressions & Equality</a>
@@ -565,135 +564,137 @@ function nope( name, options, test ){
 
   - For more information see [Truth Equality and JavaScript](http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108) by Angus Croll
 
-    **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 
 ## <a name='blocks'>Blocks</a>
 
   - Use braces with all multi-line blocks.
 
-    ```javascript
-    // bad
-    if( test )
-      return false;
+```javascript
+// bad
+if( test )
+  return false;
 
-    // good
-    if( test ) return false;
+// good
+if( test ) return false;
 
-    // good
-    if( test ){
-      return false;
-    }
-    if( test ){ return false; }
+// better
+if( test ){
+  return false;
+}
 
-    // bad
-    function(){ return false; }
+// one liner
+if( test ){ return false; }
 
-    // good
-    function(){
-      return false;
-    }
-    ```
+// bad
+function(){ return false; }
 
-    **[[⬆]](#TOC)**
+// good
+function(){
+	return false;
+}
+```
+
+**[[⬆]](#TOC)**
 
 
 ## <a name='comments'>Comments</a>
 
   - Use `/** ... */` for multiline comments. Include a description, specify types and values for all parameters and return values.
 
-    ```javascript
-    // bad
-    // make() returns a new element
-    // based on the passed in tag name
-    //
-    // @param <String> tag
-    // @return <Element> element
-    function make(tag){
+```javascript
+// bad
+// make() returns a new element
+// based on the passed in tag name
+//
+// @param <String> tag
+// @return <Element> element
+function make(tag){
 
-      // ...stuff...
+  // ...stuff...
 
-      return element;
-    }
+  return element;
+}
 
-    // good
-    /**
-    * make() returns a new element
-    * based on the passed in tag name
-    *
-    * @param <String> tag
-    * @return <Element> element
-    */
-    function make(tag){
+// good
+/**
+* make() returns a new element
+* based on the passed in tag name
+*
+* @param <String> tag
+* @return <Element> element
+*/
+function make(tag){
 
-      // ...stuff...
+  // ...stuff...
 
-      return element;
-    }
-    ```
+  return element;
+}
+```
 
   - Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an emptyline before the comment.
 
-    ```javascript
-    // bad
-    var active = true;  // is current tab
+```javascript
+// bad
+var active = true;  // is current tab
 
-    // good
-    // is current tab
-    var active = true;
+// good
+// is current tab
+var active = true;
 
-    // bad
-    function getType(){
-      console.log( 'fetching type...' );
-      // set the default type to 'no type'
-      var type = this._type || 'no type';
+// bad
+function getType(){
+  console.log( 'fetching type...' );
+  // set the default type to 'no type'
+  var type = this._type || 'no type';
 
-      return type;
-    }
+  return type;
+}
 
-    // good
-    function getType(){
-      console.log( 'fetching type...' );
+// good
+function getType(){
+  console.log( 'fetching type...' );
 
-      // set the default type to 'no type'
-      var type = this._type || 'no type';
+  // set the default type to 'no type'
+  var type = this._type || 'no type';
 
-      return type;
-    }
-    ```
+  return type;
+}
+```
 
   - Prefixing your comments with `FIXME` or `TODO` helps other developers quickly understand if you're pointing out a problem that needs to be revisited, or if you're suggesting a solution to the problem that needs to be implemented. These are different than regular comments because they are actionable. The actions are `FIXME -- need to figure this out` or `TODO -- need to implement`.
 
   - Use `// FIXME:` to annotate problems
 
-    ```javascript
-    function Calculator(){
+```javascript
+function Calculator(){
 
-      // FIXME: shouldn't use a global here
-      total = 0;
-
-      return this;
-    }
-    ```
+	// FIXME: shouldn't use a global here
+	total = 0;
+	
+	return this;
+}
+```
 
   - Use `// TODO:` to annotate solutions to problems
 
 ```javascript
 function Calculator(){
-
-  // TODO: total should be configurable by an options param
-  this.total = 0;
-
-  return this;
+	
+	// TODO: total should be configurable by an options param
+	this.total = 0;
+	
+	return this;
 }
 ```
 
-    **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 
 ## <a name='whitespace'>Whitespace</a>
 
-- Use soft tabs set to 4 spaces
+- Use soft tabs set to 4 spaces please. No spaces or 2 spaces. TABS
 
 ```javascript
 // bad
@@ -754,97 +755,97 @@ function test() {
 
   - Use indentation when making long method chains.
 
-    ```javascript
-    // bad
-    $('#items').find('.selected').highlight().end().find('.open').updateCount();
+```javascript
+// bad
+$('#items').find('.selected').highlight().end().find('.open').updateCount();
 
-    // good
-    $('#items')
-      .find('.selected')
-        .highlight()
-        .end()
-      .find('.open')
-        .updateCount();
+// good
+$( '#items' )
+	.find( '.selected' )
+	.highlight()
+	.end()
+	.find( '.open' )
+	.updateCount();
 
-    // bad
-    var leds = stage.selectAll('.led').data(data).enter().append('svg:svg').class('led', true)
-        .attr('width',  (radius + margin) * 2).append('svg:g')
-        .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
-        .call(tron.led);
+// bad
+var leds = stage.selectAll('.led').data(data).enter().append('svg:svg').class('led', true)
+    .attr('width',  (radius + margin) * 2).append('svg:g')
+    .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
+    .call(tron.led);
 
-    // good
-    var leds = stage.selectAll('.led')
-        .data(data)
-      .enter().append('svg:svg')
-        .class('led', true)
-        .attr('width',  (radius + margin) * 2)
-      .append('svg:g')
-        .attr('transform', 'translate(' + (radius + margin) + ',' + (radius + margin) + ')')
-        .call(tron.led);
-    ```
+// good
+var leds = stage.selectAll( '.led' )
+	.data( data )
+	.enter().append( 'svg:svg' )
+	.class( 'led', true )
+	.attr( 'width', ( radius + margin ) * 2 )
+	.append( 'svg:g' )
+	.attr( 'transform', 'translate(' + ( radius + margin ) + ',' + ( radius + margin ) + ')' )
+	.call( tron.led );
+```
 
-    **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 ## <a name='leading-commas'>Leading Commas</a>
 
   - **Nope.**
 
-    ```javascript
-    // bad
-    var once
-      , upon
-      , aTime;
+```javascript
+// bad
+var once
+  , upon
+  , aTime;
 
-    // good
-    var once,
-        upon,
-        aTime;
+// good
+var once,
+    upon,
+    aTime;
 
-    // bad
-    var hero = {
-        firstName: 'Bob'
-      , lastName: 'Parr'
-      , heroName: 'Mr. Incredible'
-      , superPower: 'strength'
-    };
+// bad
+var hero = {
+    firstName: 'Bob'
+  , lastName: 'Parr'
+  , heroName: 'Mr. Incredible'
+  , superPower: 'strength'
+};
 
-    // good
-    var hero = {
-      firstName: 'Bob',
-      lastName: 'Parr',
-      heroName: 'Mr. Incredible',
-      superPower: 'strength'
-    };
-    ```
+// good
+var hero = {
+  firstName 	: 'Bob',
+  lastName 		: 'Parr',
+  heroName 		: 'Mr. Incredible',
+  superPower 	: 'strength'
+};
+```
 
-    **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 
 ## <a name='semicolons'>Semicolons</a>
 
   - **Yup.**
 
-    ```javascript
-    // bad
-    (function(){
-      var name = 'Skywalker'
-      return name
-    })()
+```javascript
+// bad
+(function(){
+	var name = 'Skywalker'
+	return name
+})()
 
-    // good
-    (function(){
-      var name = 'Skywalker';
-      return name;
-    })();
+// good
+(function(){
+	var name = 'Skywalker';
+	return name;
+})();
 
-    // good
-    ;(function(){
-      var name = 'Skywalker';
-      return name;
-    })();
-    ```
+// good
+(function(){
+	var name = 'Skywalker';
+	return name;
+})();
+```
 
-    **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 
 ## <a name='type-coercion'>Type Casting & Coercion</a>
@@ -887,10 +888,10 @@ function test() {
     var val = parseInt(inputValue);
 
     // good
-    var val = Number(inputValue);
+    var val = Number( inputValue );
 
     // good
-    var val = parseInt(inputValue, 10);
+    var val = parseInt( inputValue, 10 );
 
     // good
     /**
@@ -910,13 +911,13 @@ function test() {
     var hasAge = new Boolean(age);
 
     // good
-    var hasAge = Boolean(age);
+    var hasAge = Boolean( age );
 
     // good
     var hasAge = !!age;
     ```
 
-    **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 
 ## <a name='naming-conventions'>Naming Conventions</a>
@@ -950,9 +951,9 @@ function test() {
     // good
     var thisIsMyObject = {};
     function thisIsMyFunction(){};
-    var user = new User({
-      name: 'Bob Parr'
-    });
+    var user = new User( {
+      name : 'Bob Parr'
+    } );
     ```
 
   - Use PascalCase when naming constructors or classes
@@ -968,69 +969,58 @@ function test() {
     });
 
     // good
-    function User(options){
-      this.name = options.name;
+    function User( options ){
+		this.name = options.name;
     }
 
-    var good = new User({
-      name: 'yup'
-    });
-    ```
-
-  - Use a leading underscore `_` when naming private properties
-
-    ```javascript
-    // bad
-    this.__firstName__ = 'Panda';
-    this.firstName_ = 'Panda';
-
-    // good
-    this._firstName = 'Panda';
+    var good = new User( {
+		name : 'yup'
+    } );
     ```
 
   - When saving a reference to `this` use `_this`.
 
-    ```javascript
-    // bad
-    function(){
-      var self = this;
-      return function(){
-        console.log(self);
-      };
-    }
+```javascript
+// bad
+	function(){
+	var self = this;
+	return function(){
+		console.log(self);
+	};
+}
 
-    // bad
-    function(){
-      var that = this;
-      return function(){
-        console.log(that);
-      };
-    }
+// bad
+	function(){
+	var that = this;
+	return function(){
+		console.log(that);
+	};
+}
 
-    // good
-    function(){
-      var _this = this;
-      return function(){
-        console.log(_this);
-      };
-    }
-    ```
+// good
+function(){
+	var _this = this;
+	return function(){
+		console.log( _this );
+	};
+}
+```
 
   - Name your functions. This is helpful for stack traces.
 
-    ```javascript
-    // bad
-    var log = function(msg){
-      console.log(msg);
-    };
+```javascript
+// bad
+var log = function(msg){
+  console.log(msg);
+};
 
-    // good
-    var log = function log(msg){
-      console.log(msg);
-    };
-    ```
+// good
+var log = function log( msg ){
+	console.log( msg );
+};
+```
 
-    **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 
 ## <a name='accessors'>Accessors</a>
@@ -1038,53 +1028,53 @@ function test() {
   - Accessor functions for properties are not required
   - If you do make accessor functions use getVal() and setVal('hello')
 
-    ```javascript
-    // bad
-    dragon.age();
+```javascript
+// bad
+dragon.age();
 
-    // good
-    dragon.getAge();
+// good
+dragon.getAge();
 
-    // bad
-    dragon.age(25);
+// bad
+dragon.age(25);
 
-    // good
-    dragon.setAge(25);
-    ```
+// good
+dragon.setAge( 25 );
+```
 
   - If the property is a boolean, use isVal() or hasVal()
 
-    ```javascript
-    // bad
-    if(!dragon.age()){
-      return false;
-    }
+```javascript
+// bad
+if(!dragon.age()){
+  return false;
+}
 
-    // good
-    if(!dragon.hasAge()){
-      return false;
-    }
-    ```
+// good
+if( !dragon.hasAge() ){
+  return false;
+}
+```
 
   - It's okay to create get() and set() functions, but be consistent.
 
-    ```javascript
-    function Jedi(options){
-      options || (options = {});
-      var lightsaber = options.lightsaber || 'blue';
-      this.set('lightsaber', lightsaber);
-    }
+```javascript
+function Jedi(options){
+  options || (options = {});
+  var lightsaber = options.lightsaber || 'blue';
+  this.set( 'lightsaber', lightsaber );
+}
 
-    Jedi.prototype.set = function(key, val){
-      this[key] = val;
-    };
+Jedi.prototype.set = function( key, val ){
+	this[ key ] = val;
+};
 
-    Jedi.prototype.get = function(key){
-      return this[key];
-    };
-    ```
+Jedi.prototype.get = function( key ){
+	return this[ key ];
+};
+```
 
-    **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 
 ## <a name='constructors'>Constructors</a>
@@ -1109,11 +1099,11 @@ function test() {
 
     // good
     Jedi.prototype.fight = function fight(){
-      console.log('fighting');
+      console.log( 'fighting' );
     };
 
     Jedi.prototype.block = function block(){
-      console.log('blocking');
+      console.log( 'blocking' );
     };
     ```
 
@@ -1148,7 +1138,7 @@ function test() {
     var luke = new Jedi();
 
     luke.jump()
-      .setHeight(20);
+      .setHeight( 20 );
     ```
 
 
@@ -1169,7 +1159,7 @@ function test() {
     };
     ```
 
-    **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 
 ## <a name='events'>Events</a>
@@ -1191,132 +1181,88 @@ function test() {
 
     ```js
     // good
-    $(this).trigger('listingUpdated', { listingId : listing.id });
+    $( this ).trigger( 'listingUpdated', { listingId : listing.id } );
 
     ...
 
-    $(this).on('listingUpdated', function(e, data){
+    $( this ).on( 'listingUpdated', function( e, data ){
       // do something with data.listingId
     });
     ```
 
-  **[[⬆]](#TOC)**
-
-
-## <a name='modules'>Modules</a>
-
-  - The module should start with a `!`. This ensures that if a malformed module forgets to include a final semicolon there aren't errors in production when the scripts get concatenated.
-  - The file should be named with camelCase, live in a folder with the same name, and match the name of the single export.
-  - Add a method called noConflict() that sets the exported module to the previous version and returns this one.
-  - Always declare `'use strict';` at the top of the module.
-
-    ```javascript
-    // fancyInput/fancyInput.js
-
-    !function(global){
-      'use strict';
-
-      var previousFancyInput = global.FancyInput;
-
-      function FancyInput(options){
-        this.options = options || {};
-      }
-
-      FancyInput.noConflict = function noConflict(){
-        global.FancyInput = previousFancyInput;
-        return FancyInput;
-      };
-
-      global.FancyInput = FancyInput;
-    }(this);
-    ```
-
-    **[[⬆]](#TOC)**
-
+**[[⬆]](#TOC)**
 
 ## <a name='jquery'>jQuery</a>
 
   - Prefix jQuery object variables with a `$`.
 
-    ```javascript
-    // bad
-    var sidebar = $('.sidebar');
+```javascript
+// bad
+var sidebar = $('.sidebar');
 
-    // good
-    var $sidebar = $('.sidebar');
-    ```
+// good
+var $sidebar = $( '.sidebar' );
+```
 
-  - Cache jQuery lookups.
+- Cache jQuery lookups.
 
-    ```javascript
-    // bad
-    function setSidebar(){
-      $('.sidebar').hide();
+```javascript
+// bad
+function setSidebar(){
+	$('.sidebar').hide();
+	
+	// ...stuff...
+	
+	$('.sidebar').css({
+		'background-color': 'pink'
+	});
+}
 
-      // ...stuff...
+// good
+function setSidebar(){
+	var $sidebar = $( '.sidebar' );
+	$sidebar.hide();
+	
+	// ...stuff...
+	
+	$sidebar.css( {
+		'background-color': 'pink'
+	} );
+}
+```
 
-      $('.sidebar').css({
-        'background-color': 'pink'
-      });
-    }
+- For DOM queries use Cascading `$( '.sidebar ul' )` or parent > child `$( '.sidebar > ul' )`. [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
+- Use `find` with scoped jQuery object queries.
 
-    // good
-    function setSidebar(){
-      var $sidebar = $('.sidebar');
-      $sidebar.hide();
+```javascript
+// bad
+$('.sidebar', 'ul').hide();
 
-      // ...stuff...
+// bad
+$('.sidebar').find('ul').hide();
 
-      $sidebar.css({
-        'background-color': 'pink'
-      });
-    }
-    ```
+// good
+$( '.sidebar ul' ).hide();
 
-  - For DOM queries use Cascading `$('.sidebar ul')` or parent > child `$('.sidebar > ul')`. [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
-  - Use `find` with scoped jQuery object queries.
+// good
+$ ('.sidebar > ul' ).hide();
 
-    ```javascript
-    // bad
-    $('.sidebar', 'ul').hide();
+// good (slower)
+$sidebar.find( 'ul' );
 
-    // bad
-    $('.sidebar').find('ul').hide();
+// good (faster)
+$( $sidebar[ 0 ] ).find( 'ul' );
+```
 
-    // good
-    $('.sidebar ul').hide();
-
-    // good
-    $('.sidebar > ul').hide();
-
-    // good (slower)
-    $sidebar.find('ul');
-
-    // good (faster)
-    $($sidebar[0]).find('ul');
-    ```
-
-    **[[⬆]](#TOC)**
-
-
-## <a name='es5'>ECMAScript 5 Compatibility</a>
-
-  - Refer to [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](http://kangax.github.com/es5-compat-table/)
-
-  **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 
-## <a name='testing'>Testing</a>
+## <a name='es5'>ECMAScript 6 Compatibility</a>
 
-  - **Yup.**
-
-    ```javascript
-    function(){
-      return true;
-    }
-    ```
-
-    **[[⬆]](#TOC)**
+- Refer to [Kangax](https://twitter.com/kangax/)'s ES5 [compatibility table](http://kangax.github.com/es5-compat-table/)
+- Refer to the new 2015 ECMAScript references https://babeljs.io/docs/learn-es2015/
+	
+**[[⬆]](#TOC)**
 
 
 ## <a name='performance'>Performance</a>
@@ -1330,7 +1276,7 @@ function test() {
   - [Long String Concatenation](http://jsperf.com/ya-string-concat)
   - Loading...
 
-  **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
 
 ## <a name='resources'>Resources</a>
@@ -1339,6 +1285,7 @@ function test() {
 **Read This**
 
   - [Annotated ECMAScript 5.1](http://es5.github.com/)
+  - https://babeljs.io/docs/learn-es2015/
 
 **Other Styleguides**
 
@@ -1380,41 +1327,8 @@ function test() {
   - [Dustin Diaz](http://dustindiaz.com/)
   - [nettuts](http://net.tutsplus.com/?s=javascript)
 
-  **[[⬆]](#TOC)**
+**[[⬆]](#TOC)**
 
-## <a name='in-the-wild'>In the Wild</a>
-
-  This is a list of organizations that are using this style guide. Send us a pull request or open an issue and we'll add you to the list.
-
-  - **Airbnb**: [airbnb/javascript](https://github.com/airbnb/javascript)
-  - **American Insitutes for Research**: [AIRAST/javascript](https://github.com/AIRAST/javascript)
-  - **ExactTarget**: [ExactTarget/javascript](https://github.com/ExactTarget/javascript)
-  - **GeneralElectric**: [GeneralElectric/javascript](https://github.com/GeneralElectric/javascript)
-  - **GoodData**: [gooddata/gdc-js-style](https://github.com/gooddata/gdc-js-style)
-  - **How About We**: [howaboutwe/javascript](https://github.com/howaboutwe/javascript)
-  - **MinnPost**: [MinnPost/javascript](https://github.com/MinnPost/javascript)
-  - **ModCloth**: [modcloth/javascript](https://github.com/modcloth/javascript)
-  - **National Geographic**: [natgeo/javascript](https://github.com/natgeo/javascript)
-  - **Razorfish**: [razorfish/javascript-style-guide](https://github.com/razorfish/javascript-style-guide)
-  - **Shutterfly**: [shutterfly/javascript](https://github.com/shutterfly/javascript)
-  - **Userify**: [userify/javascript](https://github.com/userify/javascript)
-  - **Zillow**: [zillow/javascript](https://github.com/zillow/javascript)
-
-## <a name='translation'>Translation</a>
-
-  This style guide is also available in other languages:
-
-  - :de: **German**: [timofurrer/javascript-style-guide](https://github.com/timofurrer/javascript-style-guide)
-  - :jp: **Japanese**: [mitsuruog/javacript-style-guide](https://github.com/mitsuruog/javacript-style-guide)
-  - :br: **Portuguese**: [armoucar/javascript-style-guide](https://github.com/armoucar/javascript-style-guide)
-
-## <a name='guide-guide'>The JavaScript Style Guide Guide</a>
-
-  - [Reference](https://github.com/airbnb/javascript/wiki/The-JavaScript-Style-Guide-Guide)
-
-## <a name='authors'>Contributors</a>
-
-  - [View Contributors](https://github.com/airbnb/javascript/graphs/contributors)
 
 
 ## <a name='license'>License</a>
