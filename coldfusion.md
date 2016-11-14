@@ -1,8 +1,30 @@
-CFML Standards & Best Practices
-===============================
+# Ortus ColdFusion (CFML) Standards & Best Practices
 
-Introduction
-------------
+## <a name='TOC'>Table of Contents</a>
+
+  1. [Introduction](#introduction)
+  1. [IDE Tools](#idetools)
+  1. [Naming & Conventions](#naming-conventions)
+  1. [Abbreviations](#abbreviations)
+  1. [Acronyms](#acronyms)
+  1. [Package Names](#package-names)
+  1. [Class/Component/Interface Names](#object-names)
+  1. [Methods](#methods)
+  1. [Types](#types)
+  1. [Tags](#tags)
+  1. [Arguments & Variables](#arguments)
+  1. [Constants](#constants)
+  1. [Whitespaces](#whitespace)
+  1. [Code Blocks](#code-blocks)
+  1. [Multi-Argument Declarations](#multi-argument)
+  1. [Multi-Argument Function Calls](#multi-function)
+  1. [Parenthesis Whitespace](#parenthesis)
+  1. [Method Chaining](#method-chaining)
+  1. [Object Creation](#object-creation)
+  1. [End of Lines](#eof)
+
+
+## <a name="introduction">Introduction</a>
 
 This document is intended to be a concise summary of best practices for anyone building CFML applications within the Ortus team. Several external resources used when creating this document. Please note that this is a guideline based on past development experience and industry standards. Please use common sense when applying them and note that this document is ever changing as development trends continue to change.
 
@@ -10,17 +32,32 @@ This document is intended to be a concise summary of best practices for anyone b
 -   [Java Coding Standards]
 -   <http://www.wikipedia.com>
 
-CFBuilder Formatter
--------------------
+**[[⬆]](#TOC)**
 
-We have also created the following formatter that you can import into Adobe ColdFusion Builder and it will format your CFML code according to our standards: <http://ortus-public.s3.amazonaws.com/ortus-formatter.xml>
 
-Naming & Conventions
---------------------
+
+## <a name="idetools">IDE Tools</a>
+
+We have created several IDE formatter tools:
+
+* [CFBuilder Formatter](https://drive.google.com/open?id=0B3aRjVTf2SeqNmFBZmZJVjR5TUU)
+* [CFBuilder Preferences](https://drive.google.com/open?id=0B3aRjVTf2Seqb2pQMnVIQ0NSLTA)
+* [CFBuilder/Eclipse Java Cleanup](https://drive.google.com/open?id=0B3aRjVTf2SeqSUZDbW5UUjVwOU0)
+* [CFBuilder/Eclipse Java Formatter](https://drive.google.com/open?id=0B3aRjVTf2SeqSndHZEppUmdQLUU)
+* [CFBuilder/Eclipse JavaScript Formatter](https://drive.google.com/open?id=0B3aRjVTf2SeqRlctSDhtZDRoRmM)
+
+**[[⬆]](#TOC)**
+
+
+## <a name="naming-conventions">Naming & Conventions</a>
 
 Use good names for components, methods, arguments and local variables. This can sometimes be a disaster if developers choose random names or non qualified names for methods, arguments and local variables. Naming is very important and will most of the time document your code. Always remember to use meaningful names and stay away from cryptic abbreviations or naming strategies.
 
-### Abbreviations
+
+**[[⬆]](#TOC)**
+
+
+### <a name="abbreviations">Abbreviations</a>
 
 AVOID abbreviations if possible. For example, *calculateSalary()* is a better method name than *calcSalary()*. Although you can use well known abbreviations, please try to avoid them if possible. Here are some *examples* NOT RULES:
 
@@ -36,25 +73,34 @@ AVOID abbreviations if possible. For example, *calculateSalary()* is a better me
 -   **regex** for regular expression, as in RegexValidator
 -   **util** for utility, as in StringUtil
 
-### Acronyms
+
+**[[⬆]](#TOC)**
+
+### <a name="acronyms">Acronyms</a>
 
 Acronyms should be avoided in names, but if they must be used, then all acronyms must be capitalized no matter where they are located on a string name.
 
-    -- DO THIS --
-    URLScanner.cfc
-    parseHTTPString()
+```
+-- DO THIS --
+URLScanner.cfc
+parseHTTPString()
 
-    -- NOT THIS --
-    url-scanner.cfc
-    UrlScanner.cfc
-    parseHttpString()
-    ParseHttpString()
+-- NOT THIS --
+url-scanner.cfc
+UrlScanner.cfc
+parseHttpString()
+ParseHttpString()
+```
 
-  [CFC Tips]: http://cfdj.sys-con.com/read/41660.htm
-  [Java Coding Standards]: http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html
+* [CFC Tips](http://cfdj.sys-con.com/read/41660.htm)
+* [Java Coding Standards](http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html)
+
+
+**[[⬆]](#TOC)**
+
+
   
-  
-### Package Names
+### <a name="package-names">Package Names</a>
 
 Package names should be unique and in lowercase letters. Underscores may be used or hyphens if necessary. You can package your objects/files using two well known approaches:
 
@@ -63,53 +109,72 @@ Package names should be unique and in lowercase letters. Underscores may be used
 
 The best practice is to use packaging by functionality if at all possible. This creates better packaging layout and maintenability. Here is an example from an application's model or business layer folder:
 
-    + model
-      + security
-      + remote-api
-      + products
-      + users
-      + conversions
-      + util
+```
+- model
+  - security
+  - remote-api
+  - products
+  - users
+  - conversions
+  - util
+```
 
-### Class/Component/Interface Names
+
+**[[⬆]](#TOC)**
+
+
+### <a name="object-names">Class/Component/Interface Names</a>
 
 Class/Component/Interface names should be nouns, as they represent most likely things or objects. They should be written in camel case with only the **first** letter capitalized for each word. Use whole words and avoid acronyms and abbreviations if possible. Interfaces should begin with the letter **I**. Base or abstract classes should denote themselves in the name as well as either **BaseClass or AbstractClass**. Examples:
 
-    -- DO THIS --
-    URLConverter
-    RSSReader
-    Serializable
-    ISearchEngine
-    IResults
-    BaseEntity
-    AbstractLogger
+```
+-- DO THIS --
+URLConverter
+RSSReader
+Serializable
+ISearchEngine
+IResults
+BaseEntity
+AbstractLogger
 
-    -- NOT THIS --
-    urlConverter
-    rssreader
-    serializable
-    iSearchEngine
-    results
-    entityToRuleThemAll
-    ALogger
+-- NOT THIS --
+urlConverter
+rssreader
+serializable
+iSearchEngine
+results
+entityToRuleThemAll
+ALogger
+```
 
-### Methods
+
+**[[⬆]](#TOC)**
+
+
+
+### <a name="methods">Methods</a>
 
 Methods should be verbs, in mixed camel case with the **first** letter lower cased and then each internal first letter of words capitalized. Examples:
 
-    -- DO THIS --
-    run()
-    doThis()
-    executeInBackground()
-    isLocated()
+```js
+-- DO THIS --
+run()
+doThis()
+executeInBackground()
+isLocated()
 
-    -- NOT THIS --
-    RUN()
-    dothis()
-    executeINBackGround()
-    ISLocated()
+-- NOT THIS --
+RUN()
+dothis()
+executeINBackGround()
+ISLocated()
+```
 
-### Type Names
+
+**[[⬆]](#TOC)**
+
+
+### <a name="types">Type Names</a>
 
 All ColdFusion type names in arguments, return types and the like should all be in lower case when they are native ColdFusion types. If they are components they should be the EXACT name of the component. This is extermely important if for some reason the code executes in a case-sensitive system, then the code will not work. ALWAYS have the exact case of components and definitions. If no type is defined, then it is assumed it is uses the **any** type.
 
@@ -118,6 +183,7 @@ All ColdFusion type names in arguments, return types and the like should all be 
 <cfargument name="paths" type="array" >
 <cfargument name="user" type="model.users.User">
 <cffunction name="getSecurityService" returntype="model.security.SecurityService">
+
 -- NOT THIS --
 <CFARGUMENT name="paths" type="ARRAY" >
 <cfargument NAME="user" type="model.users.user">
@@ -125,7 +191,10 @@ All ColdFusion type names in arguments, return types and the like should all be 
 ```
 
 
-### CFML Tags, Custom Tags and Attributes
+**[[⬆]](#TOC)**
+
+
+### <a name="tags">CFML Tags, Custom Tags and Attributes</a>
 
 All CFML and custom tags should be writing in lower case form, just like HTML tags. Attributes for CFML tags should follow the same behavior as arguments and variables as seen below. If attributes can all be placed in one line, then do that. However, if they will span and cause breaks, consider breaking the attributes into multiple lines and aligning them to the first attribute. Usually, you can do 2 or 3 in one line, else break. Same goes for method calls.
 
@@ -135,10 +204,12 @@ All CFML and custom tags should be writing in lower case form, just like HTML ta
 <cfabort>
 <cfdump var="#session#">
 <cfhttp url="#urladdress#" method="GET" resolveurl="Yes" throwOnError="Yes"/>
+
 -- NOT THIS --
 <CFHTTP>
 <CFABORT>
 <CFDump Var="#session#">
+
 -- Unecessary Multi Line --
 <cfhttp url="#urladdress#" 
 method="GET" 
@@ -146,55 +217,90 @@ resolveurl="Yes"
 throwOnError="Yes"/>
 ```
 
-### Arguments and Variables
+
+
+**[[⬆]](#TOC)**
+
+
+### <a name="arguments">Arguments and Variables</a>
 
 They should be descriptive lowercase single words, acronyms or abbreviations. If multiple words are necessary they should follow camel case with first letter lowercase. Examples:
 
-``` coldfusion
+``` js
 -- DO THIS --
 niceLocation = "Miami";
 results = "";
 avgSalary = "323";
+
 -- NOT THIS --
 NICELOCATION = "Miami";
 Results = "";
 average-salary = "323";
 ```
 
-### Constants or Static Variables
+
+
+**[[⬆]](#TOC)**
+
+
+### <a name="constants">Constants or Static Variables</a>
 
 They should all be in upper case separated by underscores "\_". Examples:
 
-``` coldfusion
+```js
 -- DO THIS --
 INTERCEPTOR_POINTS = "";
 LINE_SEP = "-";
 MAX = "123";
+
 -- NOT THIS --
 interceptor-points = "";
 line_sep = "d";
 max = "123";
 ```
 
-Whitespaces
------------
+
+**[[⬆]](#TOC)**
+
+
+## <a name="whitespace">Whitespaces</a>
 
 This is more of a convenience for readability and preference, but these are the standards we set forward for consistency.
 
-### Code Blocks
+
+**[[⬆]](#TOC)**
+
+
+
+### <a name="code-blocks">Code Blocks</a>
 
 Code blocks should start in one line and end in another.
 
-``` coldfusion
+```js
 // DO THIS
 component{
 }
+
 try{
 }
+
+transaction{
+
+}
+
+thread{
+
+}
+
+for( var x = 1; x lte 10; x++ ){
+
+}
+
 if( false ){
 } else if( XX ){
 } else {
 }
+
 // NOT THIS
 component
 {
@@ -213,55 +319,80 @@ else{
 }
 ```
 
-### Multi-Argument Declarations
 
-When declaring more than 2 or 3 arguments go into multi-line layout
 
-``` coldfusion
+**[[⬆]](#TOC)**
+
+### <a name="multi-argument">Multi-Argument Declarations</a>
+
+When declaring more than 4 arguments or more go into multi-line layout
+
+```coldfusion
 // DO THIS
 function testThis(
-required name,
-required any target,
-boolean isHappy=true,
-any results
-){
-... function here
+	required name,
+	required any target,
+	boolean isHappy="true",
+	any results
+	){
+  
+  ... function here
+
 }
+
 // NOT THIS
-function testThis(required name, required any target, boolean isHappy=true, any results){
+function testThis(required name, required any target, boolean isHappy="true", any results){
 }
 ```
 
-### Multi-Argument function calls
 
-When calling a function with more than 2 or 3 arguments go into multi-line layout:
 
-``` coldfusion
+**[[⬆]](#TOC)**
+
+### <a name="multi-function">Multi-Argument function calls</a>
+
+When calling a function with more than 4 arguments or more go into multi-line layout:
+
+``` js
 // DO THIS
-obj.callMethod( target=this,
-name="luis",
-results=true,
-moreData="false" ); 
+obj.callMethod( 
+	target 		= this,
+	name 		= "luis",
+	results		= true,
+	moreData 	= "false" 
+); 
+
 // NOT THIS
 obj.callMethod( target=this, name="luis", results=true, moreData="false" ); 
 ```
-### Parenthesis Whitespace
+
+
+**[[⬆]](#TOC)**
+
+
+
+### <a name="parenthesis">Parenthesis Whitespace</a>
 
 Try to always leave a start and ending whitespace for parenthesis code like in method calls, evaluations, etc.
 
-``` coldfusion
+```js
+
 // DO THIS
-obj.callMethod( target=this,
-name="luis",
-results=true,
-moreData="false" ); 
+obj.callMethod( 
+	target 		= this,
+	name 		= "luis",
+	results		= true,
+	moreData 	= "false" 
+); 
+ 
 obj.test( this );
 obj.setData( 1 * total + 4 );
 if( x lt 4 ){
 }
 for( var x=1; x lte 45; x++ ){
 }
-return ( structKeyExists( local, "results") ? local.results : "null" );
+return ( structKeyExists( local, "results" ) ? local.results : "null" );
+
 // NOT THIS
 obj.callMethod(target=this, name="luis", results=true, moreData="false"); 
 obj.test(this);
@@ -273,42 +404,55 @@ for(var x=1;x lte 45;x++ ){
 return(structKeyExists(local,"results")?local.results:"null");
 ```
 
-### Method Chaining
+
+**[[⬆]](#TOC)**
+
+
+### <a name="method-chaining">Method Chaining</a>
 
 When using method chaining and libraries that encourage this, remember that they do it for convenience and also readability. Do not chain for up to 1000 levels, use 2 or 3 and then break.
 
-``` coldfusion
+``` js
 // DO THIS
 obj.$( "test", this ).$args( 1,2,3,4 ).$results( this )
-.$( "another", method() )
-.$( "another", method());
+  .$( "another", method() )
+  .$( "another", method());
+
 map( "MyCFC" )
-.toPath( "this.path.Component" )
-.asSingleton();
+  .toPath( "this.path.Component" )
+  .asSingleton();
+
 var c = newCriteria()
-.isEq( "id", arguments.id )
-.createAlias( "orders", "o" )
-.isIn( "o.tags", arguments.tags );
+  .isEq( "id", arguments.id )
+  .createAlias( "orders", "o" )
+  .isIn( "o.tags", arguments.tags );
+
 // NOT THIS
 obj.$("test", this).$args(1,2,3,4).$results(this).$("another", method() );
 map( "MyCFC" ).toPath( "this.path.Component" ).asSingleton();
 var c = newCriteria().isEq( "id", arguments.id ).createAlias( "orders", "o" ).isIn( "o.tags", arguments.tags );
 ```
 
-Prefer *new* over *CreateObject*
---------------------------------
 
-Prefer the *new* declaration over the *createObject* declaration to improve readability:
+**[[⬆]](#TOC)**
 
-``` coldfusion
+
+## <a name="object-creation">Prefer *new* over *CreateObject*</a>
+
+Prefer the `new` declaration over the `createObject` declaration to improve readability:
+
+``` js
 // do this
 obj = new coldbox.system.testing.TestBox();
+
 // dont this
-obj = createObject("component", "coldbox.system.testing.testBox").init();
+obj = createObject( "component", "coldbox.system.testing.testBox" ).init();
 ```
 
-End of Line on Files
---------------------
+
+**[[⬆]](#TOC)**
+
+## <a name="eof">End of Line on Files</a>
 
 Do not add extra lines to files when ending them:
 
@@ -318,6 +462,9 @@ component{
 .....
 }
 ```
+
+
+**[[⬆]](#TOC)**
 
 Components
 ==========
