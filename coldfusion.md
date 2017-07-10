@@ -338,7 +338,7 @@ else{
 
 ### <a name="multi-argument">Multi-Argument Declarations</a>
 
-When declaring more than 4 arguments or more go into multi-line layout
+When declaring 4 arguments or more go into multi-line layout
 
 ```coldfusion
 // DO THIS
@@ -364,7 +364,7 @@ function testThis(required name, required any target, boolean isHappy="true", an
 
 ### <a name="multi-function">Multi-Argument Function Calls</a>
 
-When calling a function with more than 4 arguments or more go into multi-line layout:
+When calling a function with 4 arguments or more go into multi-line layout:
 
 ``` js
 // DO THIS
