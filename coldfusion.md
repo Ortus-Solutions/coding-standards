@@ -756,19 +756,19 @@ There will be cases where you need to do a double tests in order to avoid race c
 
 ```coldfusion
 -- DO THIS --
-<cfif structKeyExists(application,"controller")>
-<cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive">
-<cfif structKeyExists(application,"controller")>
-<cfset application.controller = createObject("component","coldbox.MainController").init()>
-</cfif>
-</cflock>
+<cfif not structKeyExists(application,"controller")>
+   <cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive">
+      <cfif not structKeyExists(application,"controller")>
+         <cfset application.controller = createObject("component","coldbox.MainController").init()>
+      </cfif>
+   </cflock>
 </cfif>
 
 -- NOT THIS --
-<cfif structKeyExists(application,"controller")>
-<cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive">
-<cfset application.controller = createObject("component","coldbox.MainController").init()>
-</cflock>
+<cfif not structKeyExists(application,"controller")>
+   <cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive">
+      <cfset application.controller = createObject("component","coldbox.MainController").init()>
+   </cflock>
 </cfif>
 ```
 As you can see from the previous code snippet, if you do not have the double if statements, then code that is waiting on the lock, will re-execute the creation of the controller object. Therefore, since we can test the resource state, we can provide a multi-thread safety net.
