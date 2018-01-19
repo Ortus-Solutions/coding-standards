@@ -6,6 +6,8 @@ This repository includes all of the Ortus coding style guides.
 * [ColdFusion](coldfusion.md)
 * [Database](database.md)
 * [Security](security.md)
+* [EditorConfig](.editorconfig) - Leverages the EditorConfig Plugins for your IDE
+* [JSHintRC](.jshintrc) - Leverages JSHint for your IDE
 
 ---
 
