@@ -33,6 +33,13 @@ syntax
 ] }
 ```
 
+### VSCode
+
+In order to have auto formatting for VSCode we will use the beautify package: https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify.  Once you install it just copy over to the root of your project our Ortus: [.jsbeautifyrc](.jsbeautifyrc) file which will be used to format js/cfml/html and css.  Then proceed to open your VS Code global settings and look for the beautify section, copy it over to your custom user settings and make sure you add the extension of `.cfc` or the `cfml` language indicator to the `javascript` section.  We will piggy back on the JS formatter.
+
+![vscode-beautify-settings](./vscode-beautify-settings.png)
+
+
 ---
 
 **Copyright Ortus Solutions Corp**
