@@ -18,7 +18,7 @@ If you use Sublime as your IDE, you can install the `CFML` package and use the b
 
 The CFML Format operation is a manual command in Sublime by default. To make it automatic, install the "Hooks" (https://packagecontrol.io/packages/Hooks) plugin for Sublime and then add the following hook to your Syntax specific settings for CFML. To get to the Syntax specific settings, open a CFM or CFC file in Sublime then select the menu item Sublime Text > Preferences > Syntax - Specific Settings
 
-```
+```json
 // These settings override both User and Default settings for the cfml
 syntax
 {
