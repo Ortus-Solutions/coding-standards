@@ -1,0 +1,70 @@
+{
+    // default commands to run when calling cfml_format
+    "default_commands": ["keywords", "blocks", "delimited_scopes", "method_chains", "normalize_strings", "normalize_builtin_functions"],
+    "singleline_max_col": 180,
+    "brackets": {
+        "padding": "spaced", // "spaced|compact"
+        "padding_strip_newlines": true
+    },
+    "parentheses": {
+        "padding": "spaced", // "spaced|compact"
+        "padding_strip_newlines": false
+    },
+    "keywords": {
+        "block_to_keyword_spacing": "spaced", // "newline|spaced|compact" - only applies to `else`, `else if`, `while`, `catch`
+        "to_keyword_spacing": null, // "newline|emptyline" - applies to anything other than a comment
+        "spacing_to_group": "compact", // "spaced|compact" - eg: `if (condition)` vs `if(condition)`
+        "spacing_to_block": "compact", // "newline|spaced|compact"
+        "empty_group_spacing": "compact", // "spaced|compact"
+        "padding_inside_group": "spaced", // "spaced|compact"
+        "padding_strip_newlines": false, // never ignored, truthy value - set `padding_inside_group` to null to avoid formatting
+        "group_to_block_spacing": "compact" // "newline|spaced|compact"
+    },
+    "blocks": {
+        "empty_spacing": "newline", // "spaced|compact|newline|emptyline"
+        "start_spacing": null, // "newline|emptyline"
+        "end_spacing": "newline", // "newline|emptyline"
+        "after_block_spacing": null // "newline|emptyline"
+    },
+    "array": {
+        "empty_spacing": "spaced", // "spaced|compact"
+        "padding_inside": "spaced", // "spaced|compact"
+        "after_comma_spacing": "spaced", // "spaced|compact"
+        "multiline": {
+            "element_count": 4, // always split onto multiple lines, if there are at least this many elements
+            "leading_comma": false
+        }
+    },
+    "struct": {
+        "empty_spacing": "compact", // "spaced|compact"
+        "padding_inside": "spaced", // "spaced|compact"
+        "key_value_colon": "spaced", // "spaced|compact"
+        "key_value_equals": "spaced", // "spaced|compact"
+        "after_comma_spacing": "spaced", // "spaced|compact"
+        "multiline": {
+            "element_count": 4, // always split onto multiple lines, if there are at least this many elements
+            "leading_comma": false
+        }
+    },
+    "function_declaration": {
+        "empty_spacing": "spaced", // "spaced|compact"
+        "padding_inside": "spaced", // "spaced|compact"
+        "after_comma_spacing": "spaced", // "spaced|compact"
+        "spacing_to_group": "compact", // "spaced|compact" - e.g. `function name()` vs `function name ()`
+        "group_to_block_spacing": "compact", // "newline|spaced|compact"
+        "multiline": {
+            "element_count": 5, // always split onto multiple lines, if there are at least this many elements
+            "leading_comma": false
+        }
+    },
+    "function_call": {
+        "empty_spacing": "compact", // "spaced|compact"
+        "padding_inside": "spaced", // "spaced|compact"
+        "after_comma_spacing": "spaced", // "spaced|compact"
+        "multiline": {
+            "element_count": 4, // always split onto multiple lines, if there are at least this many elements
+            "leading_comma": false,
+            "break_after_first_element": false // break after first element and align other elements to it
+        }
+    }
+}
