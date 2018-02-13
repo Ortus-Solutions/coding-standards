@@ -41,10 +41,8 @@
 		{ "code": "FUNCTION_HINT_MISSING" },
 		{ "code": "FILE_SHOULD_START_WITH_LOWERCASE" },
         { "code": "LOCAL_LITERAL_VALUE_USED_TOO_OFTEN" },
-		{ "code": "GLOBAL_VAR" },
         { "code": "GLOBAL_LITERAL_VALUE_USED_TOO_OFTEN" },
 		{ "code": "MISSING_VAR" },
-		{ "code" : "METHOD_INVALID_NAME" },
 		{ "code" : "METHOD_ALLCAPS_NAME" },
 		{ "code" : "METHOD_IS_TEMPORARY" },
 		{ "code": "NESTED_CFOUTPUT" },
@@ -56,7 +54,6 @@
 		{ "code": "SQL_SELECT_STAR" },
 		{ "code": "SCOPE_ALLCAPS_NAME" },
 		{ "code": "VAR_ALLCAPS_NAME" },
-		{ "code": "VAR_INVALID_NAME" },
 		{ "code": "VAR_TOO_WORDY" },
 		{ "code": "VAR_IS_TEMPORARY" }
     ],
