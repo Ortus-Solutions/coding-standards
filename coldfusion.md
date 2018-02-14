@@ -91,18 +91,19 @@ AVOID abbreviations if possible. For example, `calculateSalary()` is a better me
 
 ### <a name="acronyms">Acronyms</a>
 
-Acronyms should be avoided in names, but if they must be used, then all acronyms must be capitalized no matter where they are located on a string name.
+Acronyms should be avoided in names, but if they must be used, then treat them with the same Camelcase rules for classes or methods/arguments/variables:
 
 ```
--- DO THIS --
-URLScanner.cfc
-parseHTTPString()
-
 -- NOT THIS --
 url-scanner.cfc
 UrlScanner.cfc
-parseHttpString()
+parseHTTPString()
 ParseHttpString()
+
+-- DO THIS --
+UrlScanner.cfc
+parseHttpString()
+XmlHttpRequest.cfc
 ```
 
 * [CFC Tips](http://cfdj.sys-con.com/read/41660.htm)
