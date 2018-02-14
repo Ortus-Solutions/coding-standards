@@ -18,7 +18,6 @@
 		{ "code": "ARG_HINT_MISSING" },
 		{ "code": "ARG_HINT_MISSING_SCRIPT" },
 		{ "code" : "ARGUMENT_INVALID_NAME" },
-		{ "code" : "ARGUMENT_ALLCAPS_NAME" },
 		{ "code" : "ARGUMENT_TOO_WORDY" },
 		{ "code" : "ARGUMENT_IS_TEMPORARY" },
         { "code": "CFQUERYPARAM_REQ" },
