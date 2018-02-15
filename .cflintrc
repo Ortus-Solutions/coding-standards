@@ -39,8 +39,6 @@
         { "code": "FUNCTION_TOO_COMPLEX" },
 		{ "code": "FUNCTION_HINT_MISSING" },
 		{ "code": "FILE_SHOULD_START_WITH_LOWERCASE" },
-        { "code": "LOCAL_LITERAL_VALUE_USED_TOO_OFTEN" },
-        { "code": "GLOBAL_LITERAL_VALUE_USED_TOO_OFTEN" },
 		{ "code": "MISSING_VAR" },
 		{ "code" : "METHOD_ALLCAPS_NAME" },
 		{ "code" : "METHOD_IS_TEMPORARY" },
