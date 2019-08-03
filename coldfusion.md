@@ -590,7 +590,7 @@ myCFC.stuff = stuff;
 
 ### <a name="cfc-constructors">Constructors</a>
 
-Always have an `init()`` method that acts as your constructor and returns `this` (unless you are building a web services/flash remoting facade). Even if the method has a simple return statement, it is always best practice that every object have a constructor method.
+Always have an `init()` method that acts as your constructor and returns `this` (unless you are building a web services/flash remoting facade). Even if the method has a simple return statement, it is always best practice that every object have a constructor method.
 
 ```js
 component{
@@ -688,13 +688,13 @@ In general, non-required arguments of a CFC method should have a default value s
 
 Use inheritance only when describing an **is-a** relationship, not for a **has-a** relationship (composition) or for code reuse only. For a nice summary, visit http://cnx.rice.edu/content/m11709/latest/ 
 
-Do not use a component as a huge glorified set of methods and call that code reuse. Components are synonymous to objects, they should have an identity upon themselves. Put in practice your [http://en.wikipedia.org/wiki/Ontology Ontology] skills and define what the CFC will do for you and what is their identity.
+Do not use a component as a huge glorified set of methods and call that code reuse. Components are synonymous to objects, they should have an identity upon themselves. Put in practice your [Ontology](http://en.wikipedia.org/wiki/Ontology) skills and define what the CFC will do for you and what is their identity.
 
 Always prefer object composition over inheritance. This is where another component is created or injected as a property of the object at hand. There are several reasons of why to choose composition over inheritance in order to make your designs more flexible and not coupled at compile time, which inheritance does. Composition brings in functionality at runtime as you can switch implementations, etc. Some resources are: 
 
-* http://brighton.ncsa.uiuc.edu/prajlich/T/node14.html
+* https://en.wikipedia.org/wiki/Composition_over_inheritance
 * http://www.artima.com/lejava/articles/designprinciples4.html
-* http://guidewiredevelopment.wordpress.com/2008/02/05/favoring-composition-over-inheritance/
+* http://web.archive.org/web/20090225065341/http://guidewiredevelopment.wordpress.com/2008/02/05/favoring-composition-over-inheritance/
 
 **[[⬆]](#TOC)**
 
