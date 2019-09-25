@@ -31,7 +31,7 @@
     "function_anonymous.multiline.leading_comma" : false,
     "function_anonymous.multiline.leading_comma.padding" : true,
     "function_anonymous.multiline.min_length" : 40,
-    "function_anonymous.padding" : false,
+    "function_anonymous.padding" : true,
     "indent_size" : 4,
     "keywords.block_to_keyword_spacing" : "spaced",
     "keywords.group_to_block_spacing" : "spaced",
