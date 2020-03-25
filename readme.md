@@ -9,6 +9,7 @@ This repository includes all of the Ortus coding style guides.
 * [EditorConfig](.editorconfig) - Leverages the EditorConfig Plugins for your IDE
 * [JSHintRC](.jshintrc) - Leverages JSHint for your IDE
 * [CFLint](.cflintrc) - Leverages CFLint to lint from the IDE or CLI
+* [ESLint](.eslintrc) - Leverages EcmaScript lint
 
 ## IDE Automatic Coding Standards
 
