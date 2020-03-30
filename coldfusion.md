@@ -15,23 +15,23 @@
   1. [Arguments & Variables](#arguments)
   1. [Constants](#constants)
   1. [Whitespaces](#whitespace)
-  1. [Code Blocks](#code-blocks)
-  1. [Multi-Argument Declarations](#multi-argument)
-  1. [Multi-Argument Function Calls](#multi-function)
-  1. [Parenthesis Whitespace](#parenthesis)
-  1. [Method Chaining](#method-chaining)
+     1. [Code Blocks](#code-blocks)
+     1. [Multi-Argument Declarations](#multi-argument)
+     1. [Multi-Argument Function Calls](#multi-function)
+     1. [Parenthesis Whitespace](#parenthesis)
+     1. [Method Chaining](#method-chaining)
   1. [Object Creation](#object-creation)
   1. [End of Lines](#eof)
   1. [Components](#cfc)
-    1. [CFC Documentation](#cfc-documentation)
-    1. [CFC Scopes](#cfc-scopes)
-    1. [CFC Constructors](#cfc-constructors)
-    1. [CFC Var Scoping](#cfc-varscoping)
-    1. [CFC Output](#cfc-output)
-    1. [CFC Return Types](#cfc-returntypes)
-    1. [CFC External Scopes](#cfc-external-scopes)
-    1. [CFC Default Arguments](#cfc-default-arguments)
-    1. [CFC Inheritance vs Composition](#cfc-inheritance)
+     1. [CFC Documentation](#cfc-documentation)
+     1. [CFC Scopes](#cfc-scopes)
+     1. [CFC Constructors](#cfc-constructors)
+     1. [CFC Var Scoping](#cfc-varscoping)
+     1. [CFC Output](#cfc-output)
+     1. [CFC Return Types](#cfc-returntypes)
+     1. [CFC External Scopes](#cfc-external-scopes)
+     1. [CFC Default Arguments](#cfc-default-arguments)
+     1. [CFC Inheritance vs Composition](#cfc-inheritance)
   1. [General Best Practices](#general)
   1. [ColdBox Best Practices](#coldbox)
 
@@ -284,8 +284,6 @@ This is more of a convenience for readability and preference, but these are the 
 
 **[[⬆]](#TOC)**
 
-
-
 ### <a name="code-blocks">Code Blocks</a>
 
 Code blocks should start in one line and end in another.
@@ -449,7 +447,6 @@ var c = newCriteria().isEq( "id", arguments.id ).createAlias( "orders", "o" ).is
 
 
 **[[⬆]](#TOC)**
-
 
 ## <a name="object-creation">Prefer *new* over *CreateObject*</a>
 
@@ -869,6 +866,14 @@ if( isDefined("arguments.car") )
 </html>
 ```
 * Code for portability. Avoid at all costs on hardcoding paths, urls, file locations, etc. If you are using a framework, which you should, they usually provide a way to setup application global variables. If not within a framework context, try to set global variables in a shared scope such as `application` scope once when your application loads and then just grab settings from it. Always believe that your application locations can change. 
+
+* Prefer double quotation marks for denoting strings.
+
+``` js
+function getFullName( string firstname = "", string lastname = "" ){
+  return "#arguments.lastname#, #arguments.firstname#";
+}
+```
 
 **[[⬆]](#TOC)**
 
