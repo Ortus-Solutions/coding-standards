@@ -50,7 +50,7 @@
 	"parentheses.padding": true,
 	"strings.quote": "double",
 	"strings.attributes.quote": "double",
-	"struct.separator": " : ",
+	"struct.separator": ": ",
 	"struct.padding": true,
 	"struct.empty_padding": false,
 	"struct.multiline.leading_comma": false,
