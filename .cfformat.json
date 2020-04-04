@@ -49,6 +49,7 @@
 	"property.multiline.min_length": 40,
 	"parentheses.padding": true,
 	"strings.quote": "double",
+        "strings.convertNestedQuotes": false,
 	"strings.attributes.quote": "double",
 	"struct.separator": " : ",
 	"struct.padding": true,
