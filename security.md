@@ -6,7 +6,7 @@ This guide delineates some best practices when dealing with SQL injection attemp
 ## <a name='TOC'>Table of Contents</a>
 
   1. [HTTP Methods](#http_methods)
-  1. [Protecting Your Code](#protection)
+  1. [Protecting Your Code](#protecting_code)
 
 ## Golden Rule of Web Applications
 > Never ever ever trust the incoming data. It is YOUR responsibility to protect your code.
@@ -37,7 +37,7 @@ There is a time for using `GET` and a time for using `POST,PUT,DELETE` and **ALL
 
 **[[⬆]](#TOC)**
 
-## <a name="protecting">Protecting Your Code</a>
+## <a name="protecting_code">Protecting Your Code</a>
 
 As for security, FORM variables are just as easy to modify as URL variables. However, there are several ways to protect from attacks, SQL injection or plain mischief:
 
