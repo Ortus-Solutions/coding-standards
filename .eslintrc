@@ -2,6 +2,7 @@ rules: {
     'prefer-promise-reject-errors': 'off',
     'semi'                        : [ 'error', 'always' ],
     'indent'                      : [ 'error', 'tab' ],
+    'vue/html-indent'             : [ 'error', 'tab' ],
     'space-in-parens'             : [ 'error', 'always' ],
     'array-bracket-spacing'       : [ 'error', 'always', {
       'singleValue'    : true,
