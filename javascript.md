@@ -390,7 +390,7 @@ superPower = new SuperPower();
 var superPower = new SuperPower();
 ```
 
-  - Use one `var` declaration for multiple variables and declare each variable on a newline. Try also to aling assignments for better readability.
+  - Use one `var` declaration for multiple variables and declare each variable on a newline. Try also to align assignments for better readability.
 
 ```javascript
 // bad
