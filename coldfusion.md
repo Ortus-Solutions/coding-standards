@@ -94,13 +94,13 @@ AVOID abbreviations if possible. For example, `calculateSalary()` is a better me
 Acronyms should be avoided in names, but if they must be used, then treat them with the same Camelcase rules for classes or methods/arguments/variables:
 
 ```
--- NOT THIS --
+❌ NOT THIS
 url-scanner.cfc
 UrlScanner.cfc
 parseHTTPString()
 ParseHttpString()
 
--- DO THIS --
+ ✅ DO THIS
 UrlScanner.cfc
 parseHttpString()
 XmlHttpRequest.cfc
@@ -142,7 +142,7 @@ The best practice is to use packaging by functionality if at all possible. This 
 Class/Component/Interface names should be nouns, as they represent most likely things or objects. They should be written in camel case with only the **first** letter capitalized for each word. Use whole words and avoid acronyms and abbreviations if possible. Interfaces should begin with the letter **I**. Base or abstract classes should denote themselves in the name as well as either **BaseClass or AbstractClass**. Examples:
 
 ```
--- DO THIS --
+ ✅ DO THIS
 URLConverter
 RSSReader
 Serializable
@@ -151,7 +151,7 @@ IResults
 BaseEntity
 AbstractLogger
 
--- NOT THIS --
+❌ NOT THIS
 urlConverter
 rssreader
 serializable
@@ -171,13 +171,13 @@ ALogger
 Methods should be verbs, in mixed camel case with the **first** letter lower cased and then each internal first letter of words capitalized. Examples:
 
 ```js
--- DO THIS --
+ ✅ DO THIS
 run()
 doThis()
 executeInBackground()
 isLocated()
 
--- NOT THIS --
+❌ NOT THIS
 RUN()
 dothis()
 executeINBackGround()
@@ -190,15 +190,15 @@ ISLocated()
 
 ### <a name="types">Type Names</a>
 
-All ColdFusion type names in arguments, return types and the like should all be in lower case when they are native ColdFusion types. If they are components they should be the EXACT name of the component. This is extermely important if for some reason the code executes in a case-sensitive system, then the code will not work. ALWAYS have the exact case of components and definitions. If no type is defined, then it is assumed it is uses the **any** type.
+All ColdFusion type names in arguments, return types and the like should all be in lower case when they are native ColdFusion types. If they are components they should be the EXACT name of the component. This is extremely important if for some reason the code executes in a case-sensitive system, then the code will not work. ALWAYS have the exact case of components and definitions. If no type is defined, then it is assumed it is uses the **any** type.
 
 ``` js
--- DO THIS --
+ ✅ DO THIS
 function test( array paths, model.users.User user ){}
 boolean function isDone(){}
 SecurityService function getSecurityService();
 
--- NOT THIS --
+❌ NOT THIS
 <CFARGUMENT name="paths" type="ARRAY" >
 <cfargument NAME="user" type="model.users.user">
 <cffunction name="getSecurityService" returnType="model.security.SECURITYSERVICE">
@@ -213,13 +213,13 @@ SecurityService function getSecurityService();
 All CFML and custom tags should be writing in lower case form, just like HTML tags. Attributes for CFML tags should follow the same behavior as arguments and variables as seen below. If attributes can all be placed in one line, then do that. However, if they will span and cause breaks, consider breaking the attributes into multiple lines and aligning them to the first attribute. Usually, you can do 2 or 3 in one line, else break. Same goes for method calls.
 
 ``` coldfusion
--- DO THIS --
+ ✅ DO THIS
 <cfhttp url="...">
 <cfabort>
 <cfdump var="#session#">
 <cfhttp url="#urladdress#" method="GET" resolveurl="Yes" throwOnError="Yes"/>
 
--- NOT THIS --
+❌ NOT THIS
 <CFHTTP>
 <CFABORT>
 <CFDump Var="#session#">
@@ -241,12 +241,12 @@ throwOnError="Yes"/>
 They should be descriptive lowercase single words, acronyms or abbreviations. If multiple words are necessary they should follow camel case with first letter lowercase. Examples:
 
 ``` js
--- DO THIS --
+ ✅ DO THIS
 niceLocation = "Miami";
 results = "";
 avgSalary = "323";
 
--- NOT THIS --
+❌ NOT THIS
 NICELOCATION = "Miami";
 Results = "";
 average-salary = "323";
@@ -262,12 +262,12 @@ average-salary = "323";
 They should all be in upper case separated by underscores "\_". Examples:
 
 ```js
--- DO THIS --
+ ✅ DO THIS
 INTERCEPTOR_POINTS = "";
 LINE_SEP = "-";
 MAX = "123";
 
--- NOT THIS --
+❌ NOT THIS
 interceptor-points = "";
 line_sep = "d";
 max = "123";
@@ -619,7 +619,7 @@ This means that if somebody persists (stores) this component in memory, subseque
 
 
 ```js
--- DO THIS --
+ ✅ DO THIS
 <cffunction name="myFunction" access="public" returntype="void" output="false" hint="This methods does nothing">
   <cfset var i = 0>
   <cfset var qGet = "">
@@ -629,7 +629,7 @@ This means that if somebody persists (stores) this component in memory, subseque
   </cfloop>
 </cffunction>
 
--- NOT THIS --
+❌ NOT THIS
 <cffunction name="myFunction" access="public" returntype="void" output="false" hint="This methods does nothing">
 <cfquery name="qGet">
 </cfquery>
@@ -717,7 +717,7 @@ Use `cflock` whenever you need to make your code thread safe. This applies to va
 * Do not overinflate the code within lock tags. Locking code should only occur on small bits of code and when you are acessing the shared resource. Of course, there are special ocassions to do more than just saving in shared scope, but use it as a rule of thumb.
 
 ```coldfusion
--- DO THIS --
+ ✅ DO THIS
 <cflock name="FileOperation" timeout="20" throwOnTimeout="true">
 <cffile action="write" file="#filePath#" output="#content#">
 </cflock>
@@ -733,7 +733,7 @@ WHERE UserID = #request.UserID#
 <cflock scope="application" timeout="2" type="exclusive">
 <cfset application.qUser=variables.qUser>
 </cflock>
--- NOT THIS --
+❌ NOT THIS
 <cflock name="FileOperation" >
 <cffile action="write" file="#filePath#" output="#content#">
 </cflock>
@@ -753,7 +753,7 @@ WHERE UserID = #request.UserID#
 There will be cases where you need to do a double tests in order to avoid race conditions on shared resources. This strategy can be applied when you need to test, for example, if a resource is created, an object is configured, etc. What this strategy does is provide two if statement criterias that can verify behavior on the resource, squished between a `cflock` tag. This prevents threads that have already entered the locking stage and are waiting execution, to re-execute the locked code.
 
 ```coldfusion
--- DO THIS --
+ ✅ DO THIS
 <cfif not structKeyExists(application,"controller")>
    <cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive">
       <cfif not structKeyExists(application,"controller")>
@@ -762,7 +762,7 @@ There will be cases where you need to do a double tests in order to avoid race c
    </cflock>
 </cfif>
 
--- NOT THIS --
+❌ NOT THIS
 <cfif not structKeyExists(application,"controller")>
    <cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive">
       <cfset application.controller = createObject("component","coldbox.MainController").init()>
@@ -775,12 +775,12 @@ As you can see from the previous code snippet, if you do not have the double if 
 Pound signs are most often used to output variables to their set values or evaluate them. There are many places where you DO NOT need to place hash signs. This only delays the evaluation and is not best practice. Most likely you will only need to use pound signs when using ''cfoutput'' or when dealing with certain tag attributes that require the evaluation of a variable.
 
 ```coldfusion
--- DO THIS --
+ ✅ DO THIS
 <cfset name = request.firstname>
 <cfif isValid></cfif>
 <cfset SomeVar = Var1 + Max(Var2, 10* Var3) + Var4>
 
--- NOT THIS --
+❌ NOT THIS
 <cfset name = #request.firstname#>
 <cfif #isValid#></cfif>
 <cfset #SomeVar# = #Var1# + #Max(Var2, 10* Var3)# + #Var4#>
@@ -801,11 +801,11 @@ Pound signs are most often used to output variables to their set values or evalu
 * Use `structKeyExists` instead of `isDefined` when checking for existence.
 
 ```js
--- DO THIS --
+ ✅ DO THIS
 if( structKeyExists( arguments, "car" ) )
 if( arguments.exists( "car" ) )
 
--- NOT THIS --
+❌ NOT THIS
 if( isDefined("arguments.car") )
 ```
 
@@ -814,22 +814,22 @@ if( isDefined("arguments.car") )
 * Avoid usage of `evaluate()` expressions. They have to be evaluated by the ColdFusion engine and will always run slower. There are times when you will have to use them, especially when doing dynamic concatenations, but try to avoid them at all possible.
 
 ```
--- DO THIS --
+ ✅ DO THIS
 <cfset value = form[ "field#i#" ]>
--- NOT THIS --
+❌ NOT THIS
 <cfset value = evaluate("form.field#i#")>
 ```
 
 * Use boolean evaluations
 
 ```
--- DO THIS --
+ ✅ DO THIS
 <cfif len(firstName)></cfif>
 <cfif NOT obj.isEmpty()></cfif>
 <cfif query.recordcount></cfif>
 <cfif arrayLen(myArray)></cfif>
 
--- NOT THIS --
+❌ NOT THIS
 <cfif firstName eq ""></cfif>
 <cfif obj.isEmpty() eq false></cfif>
 <cfif query.recordcount gt 0></cfif>
@@ -839,7 +839,7 @@ if( isDefined("arguments.car") )
 * When you are creating view templates, try to always surround it with `cfoutput` tag, instead of nesting them all over the place.
 
 ```
--- DO THIS --
+ ✅ DO THIS
 <cfoutput>
 <html>
 <head>
@@ -853,7 +853,7 @@ if( isDefined("arguments.car") )
 </html>
 </cfoutput>
 
--- NOT THIS --
+❌ NOT THIS
 <html>
 <head>
 <cfoutput>#head#</cfoutput>
