@@ -157,13 +157,6 @@ Class/Component/Interface names should be nouns, as they represent most likely t
 
 Methods should be verbs, in mixed camel case with the **first** letter lower cased and then each internal first letter of words capitalized. Examples:
 
-|  ✅ DO THIS                 | ❌ NOT THIS                 |
-|-----------------------------|-----------------------------|
-| ```run()```                 | ```RUN()```                 |
-| ```doThis()```              | ```dothis()```              |
-| ```executeInBackground()``` | ```executeINBackGround()``` |
-| ```isLocated()```           | ```ISLocated()```           |
-
 <table>
 <tr>
 <th>
@@ -367,17 +360,6 @@ average-salary = "323";
 
 They should all be in upper case separated by underscores "\_". Examples:
 
-```js
- ✅ DO THIS
-INTERCEPTOR_POINTS = "";
-LINE_SEP = "-";
-MAX = "123";
-
-❌ NOT THIS
-interceptor-points = "";
-line_sep = "d";
-max = "123";
-```
 <table>
 <tr>
 <th>
