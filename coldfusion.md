@@ -190,7 +190,7 @@ ISLocated()
 
 ### <a name="types">Type Names</a>
 
-All ColdFusion type names in arguments, return types and the like should all be in lower case when they are native ColdFusion types. If they are components they should be the EXACT name of the component. This is extermely important if for some reason the code executes in a case-sensitive system, then the code will not work. ALWAYS have the exact case of components and definitions. If no type is defined, then it is assumed it is uses the **any** type.
+All ColdFusion type names in arguments, return types and the like should all be in lower case when they are native ColdFusion types. If they are components they should be the EXACT name of the component. This is extremely important if for some reason the code executes in a case-sensitive system, then the code will not work. ALWAYS have the exact case of components and definitions. If no type is defined, then it is assumed it is uses the **any** type.
 
 ``` js
 -- DO THIS --
