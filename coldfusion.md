@@ -93,18 +93,15 @@ AVOID abbreviations if possible. For example, `calculateSalary()` is a better me
 
 Acronyms should be avoided in names, but if they must be used, then treat them with the same Camelcase rules for classes or methods/arguments/variables:
 
-```
-❌ NOT THIS
-url-scanner.cfc
-UrlScanner.cfc
-parseHTTPString()
-ParseHttpString()
+|      ✅ DO THIS         |      ❌ NOT THIS        |
+|-------------------------|-------------------------|
+| ```UrlScanner.cfc```    | ```url-scanner.cfc```   |
+| ```UrlScanner.cfc```    | ```urlscanner.cfc```    |
+| ```parseHttpString()``` | ```parseHTTPString()``` |
+| ```parseHttpString()``` | ```ParseHttpString()``` |
+| ```XmlHttpRequest.cfc```| ```xmlHTTPRequest.cfc```|
+| ```XmlHttpRequest.cfc```| ```XmlHTTPRequest.cfc```|
 
- ✅ DO THIS
-UrlScanner.cfc
-parseHttpString()
-XmlHttpRequest.cfc
-```
 
 * [CFC Tips](http://cfdj.sys-con.com/read/41660.htm)
 * [Java Coding Standards](http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html)
@@ -141,25 +138,15 @@ The best practice is to use packaging by functionality if at all possible. This 
 
 Class/Component/Interface names should be nouns, as they represent most likely things or objects. They should be written in camel case with only the **first** letter capitalized for each word. Use whole words and avoid acronyms and abbreviations if possible. Interfaces should begin with the letter **I**. Base or abstract classes should denote themselves in the name as well as either **BaseClass or AbstractClass**. Examples:
 
-```
- ✅ DO THIS
-URLConverter
-RSSReader
-Serializable
-ISearchEngine
-IResults
-BaseEntity
-AbstractLogger
-
-❌ NOT THIS
-urlConverter
-rssreader
-serializable
-iSearchEngine
-results
-entityToRuleThemAll
-ALogger
-```
+|  ✅ DO THIS  | ❌ NOT THIS      |
+|----------------|---------------------|
+| ```URLConverter```   | ```urlConverter```       |
+| ```RSSReader```      | ```rssreader```           |
+| ```Serializable```   | ```serializable```        |
+| ```ISearchEngine```  | ```iSearchEngine```       |
+| ```IResults```       | ```results```             |
+| ```BaseEntity```     | ```entityToRuleThemAll``` |
+| ```AbstractLogger``` | ```ALogger```             |
 
 
 **[[⬆]](#TOC)**
@@ -170,19 +157,46 @@ ALogger
 
 Methods should be verbs, in mixed camel case with the **first** letter lower cased and then each internal first letter of words capitalized. Examples:
 
-```js
+|  ✅ DO THIS                 | ❌ NOT THIS                 |
+|-----------------------------|-----------------------------|
+| ```run()```                 | ```RUN()```                 |
+| ```doThis()```              | ```dothis()```              |
+| ```executeInBackground()``` | ```executeINBackGround()``` |
+| ```isLocated()```           | ```ISLocated()```           |
+
+<table>
+<tr>
+<th>
  ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 run()
 doThis()
 executeInBackground()
 isLocated()
+</pre>
+</td>
 
-❌ NOT THIS
+<td>
+<pre lang="js">
 RUN()
 dothis()
 executeINBackGround()
 ISLocated()
-```
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 
 **[[⬆]](#TOC)**
@@ -190,20 +204,40 @@ ISLocated()
 
 ### <a name="types">Type Names</a>
 
-All ColdFusion type names in arguments, return types and the like should all be in lower case when they are native ColdFusion types. If they are components they should be the EXACT name of the component. This is extremely important if for some reason the code executes in a case-sensitive system, then the code will not work. ALWAYS have the exact case of components and definitions. If no type is defined, then it is assumed it is uses the **any** type.
+All ColdFusion type names in arguments, return types and the like should all be in lower case when they are native ColdFusion types. If they are components they should be the EXACT name of the component. This is extermely important if for some reason the code executes in a case-sensitive system, then the code will not work. ALWAYS have the exact case of components and definitions. If no type is defined, then it is assumed it is uses the **any** type.
 
-``` js
+<table>
+<tr>
+<th>
  ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 function test( array paths, model.users.User user ){}
 boolean function isDone(){}
 SecurityService function getSecurityService();
+</pre>
+</td>
 
-❌ NOT THIS
-<CFARGUMENT name="paths" type="ARRAY" >
-<cfargument NAME="user" type="model.users.user">
-<cffunction name="getSecurityService" returnType="model.security.SECURITYSERVICE">
-```
+<td>
+<pre lang="html">
+&lt;CFARGUMENT name="paths" type="ARRAY" &gt;
+&lt;cfargument NAME="user" type="model.users.user" &gt;
+&lt;cffunction name="getSecurityService" returnType="model.security.SECURITYSERVICE" &gt;
+</pre>
+</td>
 
+
+</tr>
+	
+</table>
 
 **[[⬆]](#TOC)**
 
@@ -212,25 +246,50 @@ SecurityService function getSecurityService();
 
 All CFML and custom tags should be writing in lower case form, just like HTML tags. Attributes for CFML tags should follow the same behavior as arguments and variables as seen below. If attributes can all be placed in one line, then do that. However, if they will span and cause breaks, consider breaking the attributes into multiple lines and aligning them to the first attribute. Usually, you can do 2 or 3 in one line, else break. Same goes for method calls.
 
-``` coldfusion
+<table>
+<tr>
+<th>
  ✅ DO THIS
-<cfhttp url="...">
-<cfabort>
-<cfdump var="#session#">
-<cfhttp url="#urladdress#" method="GET" resolveurl="Yes" throwOnError="Yes"/>
-
+</th>
+<th>
 ❌ NOT THIS
-<CFHTTP>
-<CFABORT>
-<CFDump Var="#session#">
+</th>
+</tr>
+	
+<tr>
 
--- Unecessary Multi Line --
-<cfhttp url="#urladdress#" 
+<td>
+<pre lang="coldfusion">
+&lt;cfhttp url="..."&gt;
+&lt;cfabort&gt;
+&lt;cfdump var="#session#"&gt;
+&lt;!-- Single Line cfhttp --&gt;
+&lt;cfhttp url="#urladdress#" method="GET" resolveurl="Yes" throwOnError="Yes"/&gt;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+</pre>
+</td>
+
+<td>
+<pre lang="cfml">
+&lt;CFHTTP&gt;
+&lt;CFABORT&gt;
+&lt;CFDump Var="#session#"&gt;
+
+&lt;!-- Unecessary Multi Line --&gt;
+&lt;cfhttp url="#urladdress#" 
 method="GET" 
 resolveurl="Yes" 
-throwOnError="Yes"/>
-```
+throwOnError="Yes"/&gt;
+</pre>
+</td>
 
+
+</tr>
+	
+</table>
 
 
 **[[⬆]](#TOC)**
@@ -240,18 +299,65 @@ throwOnError="Yes"/>
 
 They should be descriptive lowercase single words, acronyms or abbreviations. If multiple words are necessary they should follow camel case with first letter lowercase. Examples:
 
-``` js
+<table>
+<tr>
+<th>
  ✅ DO THIS
-niceLocation = "Miami";
-results = "";
-avgSalary = "323";
-
+</th>
+<th>
 ❌ NOT THIS
-NICELOCATION = "Miami";
-Results = "";
-average-salary = "323";
-```
+</th>
+</tr>
+	
+<tr>
 
+<td>
+<pre lang="js">
+niceLocation = "Miami";
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+NICELOCATION = "Miami";
+</pre>
+</td>
+
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+results = "";
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+Results = "";
+</pre>
+</td>
+
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+avgSalary = "323";
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+average-salary = "323";
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 
 **[[⬆]](#TOC)**
@@ -272,6 +378,65 @@ interceptor-points = "";
 line_sep = "d";
 max = "123";
 ```
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+INTERCEPTOR_POINTS = "";
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+interceptor-points = "";
+</pre>
+</td>
+
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+LINE_SEP = "-";
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+line_sep = "-";
+</pre>
+</td>
+
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+MAX = "123";
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+max = "123";
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 
 **[[⬆]](#TOC)**
