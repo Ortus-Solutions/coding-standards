@@ -1125,23 +1125,48 @@ WHERE UserID = #request.UserID#
 ### Race Conditions
 There will be cases where you need to do a double tests in order to avoid race conditions on shared resources. This strategy can be applied when you need to test, for example, if a resource is created, an object is configured, etc. What this strategy does is provide two if statement criterias that can verify behavior on the resource, squished between a `cflock` tag. This prevents threads that have already entered the locking stage and are waiting execution, to re-execute the locked code.
 
-```coldfusion
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
  ✅ DO THIS
-<cfif not structKeyExists(application,"controller")>
-   <cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive">
-      <cfif not structKeyExists(application,"controller")>
-         <cfset application.controller = createObject("component","coldbox.MainController").init()>
-      </cfif>
-   </cflock>
-</cfif>
-
+</th>
+<th>
 ❌ NOT THIS
-<cfif not structKeyExists(application,"controller")>
-   <cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive">
-      <cfset application.controller = createObject("component","coldbox.MainController").init()>
-   </cflock>
-</cfif>
-```
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+&lt;cfif not structKeyExists(application,"controller")&gt;
+   &lt;cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive"&gt;
+      &lt;cfif not structKeyExists(application,"controller")&gt;
+         &lt;cfset application.controller = createObject("component","coldbox.MainController").init()&gt;
+      &lt;/cfif&gt;
+   &lt;/cflock&gt;
+&lt;/cfif&gt;
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+&lt;cfif not structKeyExists(application,"controller")&gt;
+   &lt;cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive"&gt;
+      &lt;cfset application.controller = createObject("component","coldbox.MainController").init()&gt;
+   &lt;/cflock&gt;
+&lt;/cfif&gt;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
+
+</tr>
+
+</table>
+
+
 As you can see from the previous code snippet, if you do not have the double if statements, then code that is waiting on the lock, will re-execute the creation of the controller object. Therefore, since we can test the resource state, we can provide a multi-thread safety net.
 
 ### Do Not Abuse Pound Signs
