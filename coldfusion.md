@@ -944,26 +944,48 @@ Always, always, always use `var` or the `local` scope for local variables inside
 
 This means that if somebody persists (stores) this component in memory, subsequent calls can and will override variables and create all sorts of memory problems. There is an open source project called [http://www.schierberl.com/cfblog/index.cfm/2006/7/20/varScoper-10-release varscoper] that can check all of your components for var scoping issues, even if they are using cfscript. Var scoping applies to methods inside components and also to UDF's/Closures in order to comply with best practices.
 
-
-```js
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
  ✅ DO THIS
-<cffunction name="myFunction" access="public" returntype="void" output="false" hint="This methods does nothing">
-  <cfset var i = 0>
-  <cfset var qGet = "">
-  <cfquery name="qGet">
-  </cfquery>
-  <cfloop from="1" to ="20" index="i">
-  </cfloop>
-</cffunction>
-
+</th>
+<th>
 ❌ NOT THIS
-<cffunction name="myFunction" access="public" returntype="void" output="false" hint="This methods does nothing">
-<cfquery name="qGet">
-</cfquery>
-<cfloop from="1" to ="20" index="i">
-</cfloop>
-</cffunction>
-```
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+&lt;cffunction name="myFunction" access="public" returntype="void" output="false" hint="This methods does nothing"&gt;
+  &lt;cfset var i = 0&gt;
+  &lt;cfset var qGet = ""&gt;
+  &lt;cfquery name="qGet"&gt;
+  &lt;/cfquery&gt;
+  &lt;cfloop from="1" to ="20" index="i"&gt;
+  &lt;/cfloop&gt;
+&lt;/cffunction&gt;
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+&lt;cffunction name="myFunction" access="public" returntype="void" output="false" hint="This methods does nothing"&gt;
+&lt;cfquery name="qGet"&gt;
+&lt;/cfquery&gt;
+&lt;cfloop from="1" to ="20" index="i"&gt;
+&lt;/cfloop&gt;
+&lt;/cffunction&gt;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 **[[⬆]](#TOC)**
 ### <a name="cfc-output">Output From CFCs</a>
