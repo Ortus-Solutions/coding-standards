@@ -93,18 +93,16 @@ AVOID abbreviations if possible. For example, `calculateSalary()` is a better me
 
 Acronyms should be avoided in names, but if they must be used, then treat them with the same Camelcase rules for classes or methods/arguments/variables:
 
-```
--- NOT THIS --
-url-scanner.cfc
-UrlScanner.cfc
-parseHTTPString()
-ParseHttpString()
+<!-- changed to a side by side table for easier visual comparison -->
+|      ✅ DO THIS         |      ❌ NOT THIS        |
+|-------------------------|-------------------------|
+| ```UrlScanner.cfc```    | ```url-scanner.cfc```   |
+| ```UrlScanner.cfc```    | ```urlscanner.cfc```    |
+| ```parseHttpString()``` | ```parseHTTPString()``` |
+| ```parseHttpString()``` | ```ParseHttpString()``` |
+| ```XmlHttpRequest.cfc```| ```xmlHTTPRequest.cfc```|
+| ```XmlHttpRequest.cfc```| ```XmlHTTPRequest.cfc```|
 
--- DO THIS --
-UrlScanner.cfc
-parseHttpString()
-XmlHttpRequest.cfc
-```
 
 * [CFC Tips](http://cfdj.sys-con.com/read/41660.htm)
 * [Java Coding Standards](http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html)
@@ -141,25 +139,16 @@ The best practice is to use packaging by functionality if at all possible. This 
 
 Class/Component/Interface names should be nouns, as they represent most likely things or objects. They should be written in camel case with only the **first** letter capitalized for each word. Use whole words and avoid acronyms and abbreviations if possible. Interfaces should begin with the letter **I**. Base or abstract classes should denote themselves in the name as well as either **BaseClass or AbstractClass**. Examples:
 
-```
--- DO THIS --
-URLConverter
-RSSReader
-Serializable
-ISearchEngine
-IResults
-BaseEntity
-AbstractLogger
-
--- NOT THIS --
-urlConverter
-rssreader
-serializable
-iSearchEngine
-results
-entityToRuleThemAll
-ALogger
-```
+<!-- changed to a side by side table for easier visual comparison -->
+|  ✅ DO THIS  | ❌ NOT THIS      |
+|----------------|---------------------|
+| ```URLConverter```   | ```urlConverter```       |
+| ```RSSReader```      | ```rssreader```           |
+| ```Serializable```   | ```serializable```        |
+| ```ISearchEngine```  | ```iSearchEngine```       |
+| ```IResults```       | ```results```             |
+| ```BaseEntity```     | ```entityToRuleThemAll``` |
+| ```AbstractLogger``` | ```ALogger```             |
 
 
 **[[⬆]](#TOC)**
@@ -170,19 +159,40 @@ ALogger
 
 Methods should be verbs, in mixed camel case with the **first** letter lower cased and then each internal first letter of words capitalized. Examples:
 
-```js
--- DO THIS --
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 run()
 doThis()
 executeInBackground()
 isLocated()
+</pre>
+</td>
 
--- NOT THIS --
+<td>
+<pre lang="js">
 RUN()
 dothis()
 executeINBackGround()
 ISLocated()
-```
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 
 **[[⬆]](#TOC)**
@@ -192,18 +202,39 @@ ISLocated()
 
 All ColdFusion type names in arguments, return types and the like should all be in lower case when they are native ColdFusion types. If they are components they should be the EXACT name of the component. This is extremely important if for some reason the code executes in a case-sensitive system, then the code will not work. ALWAYS have the exact case of components and definitions. If no type is defined, then it is assumed it is uses the **any** type.
 
-``` js
--- DO THIS --
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 function test( array paths, model.users.User user ){}
 boolean function isDone(){}
 SecurityService function getSecurityService();
+</pre>
+</td>
 
--- NOT THIS --
-<CFARGUMENT name="paths" type="ARRAY" >
-<cfargument NAME="user" type="model.users.user">
-<cffunction name="getSecurityService" returnType="model.security.SECURITYSERVICE">
-```
+<td>
+<pre lang="html">
+&lt;CFARGUMENT name="paths" type="ARRAY" &gt;
+&lt;cfargument NAME="user" type="model.users.user" &gt;
+&lt;cffunction name="getSecurityService" returnType="model.security.SECURITYSERVICE" &gt;
+</pre>
+</td>
 
+
+</tr>
+	
+</table>
 
 **[[⬆]](#TOC)**
 
@@ -212,25 +243,51 @@ SecurityService function getSecurityService();
 
 All CFML and custom tags should be writing in lower case form, just like HTML tags. Attributes for CFML tags should follow the same behavior as arguments and variables as seen below. If attributes can all be placed in one line, then do that. However, if they will span and cause breaks, consider breaking the attributes into multiple lines and aligning them to the first attribute. Usually, you can do 2 or 3 in one line, else break. Same goes for method calls.
 
-``` coldfusion
--- DO THIS --
-<cfhttp url="...">
-<cfabort>
-<cfdump var="#session#">
-<cfhttp url="#urladdress#" method="GET" resolveurl="Yes" throwOnError="Yes"/>
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
 
--- NOT THIS --
-<CFHTTP>
-<CFABORT>
-<CFDump Var="#session#">
+<td>
+<pre lang="coldfusion">
+&lt;cfhttp url="..."&gt;
+&lt;cfabort&gt;
+&lt;cfdump var="#session#"&gt;
+&lt;!-- Single Line cfhttp --&gt;
+&lt;cfhttp url="#urladdress#" method="GET" resolveurl="Yes" throwOnError="Yes"/&gt;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+</pre>
+</td>
 
--- Unecessary Multi Line --
-<cfhttp url="#urladdress#" 
+<td>
+<pre lang="cfml">
+&lt;CFHTTP&gt;
+&lt;CFABORT&gt;
+&lt;CFDump Var="#session#"&gt;
+
+&lt;!-- Unecessary Multi Line --&gt;
+&lt;cfhttp url="#urladdress#" 
 method="GET" 
 resolveurl="Yes" 
-throwOnError="Yes"/>
-```
+throwOnError="Yes"/&gt;
+</pre>
+</td>
 
+
+</tr>
+	
+</table>
 
 
 **[[⬆]](#TOC)**
@@ -240,18 +297,66 @@ throwOnError="Yes"/>
 
 They should be descriptive lowercase single words, acronyms or abbreviations. If multiple words are necessary they should follow camel case with first letter lowercase. Examples:
 
-``` js
--- DO THIS --
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 niceLocation = "Miami";
-results = "";
-avgSalary = "323";
+</pre>
+</td>
 
--- NOT THIS --
+<td>
+<pre lang="js">
 NICELOCATION = "Miami";
-Results = "";
-average-salary = "323";
-```
+</pre>
+</td>
 
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+results = "";
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+Results = "";
+</pre>
+</td>
+
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+avgSalary = "323";
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+average-salary = "323";
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 
 **[[⬆]](#TOC)**
@@ -261,17 +366,66 @@ average-salary = "323";
 
 They should all be in upper case separated by underscores "\_". Examples:
 
-```js
--- DO THIS --
-INTERCEPTOR_POINTS = "";
-LINE_SEP = "-";
-MAX = "123";
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
 
--- NOT THIS --
+<td>
+<pre lang="js">
+INTERCEPTOR_POINTS = "";
+</pre>
+</td>
+
+<td>
+<pre lang="js">
 interceptor-points = "";
-line_sep = "d";
+</pre>
+</td>
+
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+LINE_SEP = "-";
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+line_sep = "-";
+</pre>
+</td>
+
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+MAX = "123";
+</pre>
+</td>
+
+<td>
+<pre lang="js">
 max = "123";
-```
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 
 **[[⬆]](#TOC)**
@@ -288,8 +442,21 @@ This is more of a convenience for readability and preference, but these are the 
 
 Code blocks should start in one line and end in another.
 
-```js
-// DO THIS
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 component{
 }
 
@@ -312,8 +479,12 @@ if( false ){
 } else if( XX ){
 } else {
 }
+<br />&nbsp;
+</pre>
+</td>
 
-// NOT THIS
+<td>
+<pre lang="js">
 component
 {
 }
@@ -329,7 +500,12 @@ if()
 }
 else{ 
 }
-```
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 
 
@@ -339,8 +515,21 @@ else{
 
 When declaring 4 arguments or more go into multi-line layout
 
-```coldfusion
-// DO THIS
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 function testThis(
 	required name,
 	required any target,
@@ -351,12 +540,25 @@ function testThis(
   ... function here
 
 }
+</pre>
+</td>
 
-// NOT THIS
+<td>
+<pre lang="js">
 function testThis(required name, required any target, boolean isHappy="true", any results){
 }
-```
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
 
+</tr>
+
+</table>
 
 
 **[[⬆]](#TOC)**
@@ -365,19 +567,44 @@ function testThis(required name, required any target, boolean isHappy="true", an
 
 When calling a function with 4 arguments or more go into multi-line layout:
 
-``` js
-// DO THIS
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 obj.callMethod( 
 	target 		= this,
 	name 		= "luis",
 	results		= true,
 	moreData 	= "false" 
 ); 
+</pre>
+</td>
 
-// NOT THIS
+<td>
+<pre lang="js">
 obj.callMethod( target=this, name="luis", results=true, moreData="false" ); 
-```
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
 
+</tr>
+
+</table>
 
 **[[⬆]](#TOC)**
 
@@ -387,9 +614,21 @@ obj.callMethod( target=this, name="luis", results=true, moreData="false" );
 
 Try to always leave a start and ending whitespace for parenthesis code like in method calls, evaluations, etc.
 
-```js
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
 
-// DO THIS
+<td>
+<pre lang="js">
 obj.callMethod( 
 	target 		= this,
 	name 		= "luis",
@@ -404,8 +643,11 @@ if( x lt 4 ){
 for( var x=1; x lte 45; x++ ){
 }
 return ( structKeyExists( local, "results" ) ? local.results : "null" );
+</pre>
+</td>
 
-// NOT THIS
+<td>
+<pre lang="js">
 obj.callMethod(target=this, name="luis", results=true, moreData="false"); 
 obj.test(this);
 obj.setData(1*total+4);
@@ -414,8 +656,17 @@ if(x lt 4){
 for(var x=1;x lte 45;x++ ){
 }
 return(structKeyExists(local,"results")?local.results:"null");
-```
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
 
+</tr>
+
+</table>
 
 **[[⬆]](#TOC)**
 
@@ -424,26 +675,58 @@ return(structKeyExists(local,"results")?local.results:"null");
 
 When using method chaining and libraries that encourage this, remember that they do it for convenience and also readability. Do not chain for up to 1000 levels, use 2 or 3 and then break.
 
-``` js
-// DO THIS
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 obj.$( "test", this ).$args( 1,2,3,4 ).$results( this )
   .$( "another", method() )
   .$( "another", method());
-
+<br />
 map( "MyCFC" )
   .toPath( "this.path.Component" )
   .asSingleton();
-
+<br />
 var c = newCriteria()
   .isEq( "id", arguments.id )
   .createAlias( "orders", "o" )
   .isIn( "o.tags", arguments.tags );
+</pre>
+</td>
 
-// NOT THIS
+<td>
+<pre lang="js">
 obj.$("test", this).$args(1,2,3,4).$results(this).$("another", method() );
+
 map( "MyCFC" ).toPath( "this.path.Component" ).asSingleton();
+
 var c = newCriteria().isEq( "id", arguments.id ).createAlias( "orders", "o" ).isIn( "o.tags", arguments.tags );
-```
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 
 **[[⬆]](#TOC)**
@@ -452,13 +735,35 @@ var c = newCriteria().isEq( "id", arguments.id ).createAlias( "orders", "o" ).is
 
 Prefer the `new` declaration over the `createObject` declaration to improve readability:
 
-``` js
-// do this
-obj = new coldbox.system.testing.TestBox();
 
-// dont this
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+obj = new coldbox.system.testing.TestBox();
+</pre>
+</td>
+
+<td>
+<pre lang="js">
 obj = createObject( "component", "coldbox.system.testing.testBox" ).init();
-```
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 
 > However, please note that this conventions are only if you are writing libraries. If you are within an ecosystem that provides WireBox Dependency Injection, then **always** prefer WireBox.
@@ -573,15 +878,37 @@ This gives access to data to only public/package member functions of the CFC. Yo
 -   It hides your implementation from the outside world
 
   
-```js
--- THESE ARE GOOD --
+<!-- changed to a side by side table for easier visual comparison -->
+<!-- changed labels from "THESE ARE GOOD" / "THESE ARE BAD" to "DO THIS" / "NOT THIS" for consistency -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 stuff = myCFC.getStuff();
 myCFC.setStuff( stuff );
+</pre>
+</td>
 
--- THESE ARE BAD --
+<td>
+<pre lang="js">
 stuff = myCFC.stuff;
 myCFC.stuff = stuff;
-```
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 **[[⬆]](#TOC)**
 
@@ -617,26 +944,48 @@ Always, always, always use `var` or the `local` scope for local variables inside
 
 This means that if somebody persists (stores) this component in memory, subsequent calls can and will override variables and create all sorts of memory problems. There is an open source project called [http://www.schierberl.com/cfblog/index.cfm/2006/7/20/varScoper-10-release varscoper] that can check all of your components for var scoping issues, even if they are using cfscript. Var scoping applies to methods inside components and also to UDF's/Closures in order to comply with best practices.
 
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
 
-```js
--- DO THIS --
-<cffunction name="myFunction" access="public" returntype="void" output="false" hint="This methods does nothing">
-  <cfset var i = 0>
-  <cfset var qGet = "">
-  <cfquery name="qGet">
-  </cfquery>
-  <cfloop from="1" to ="20" index="i">
-  </cfloop>
-</cffunction>
+<td>
+<pre lang="js">
+&lt;cffunction name="myFunction" access="public" returntype="void" output="false" hint="This methods does nothing"&gt;
+  &lt;cfset var i = 0&gt;
+  &lt;cfset var qGet = ""&gt;
+  &lt;cfquery name="qGet"&gt;
+  &lt;/cfquery&gt;
+  &lt;cfloop from="1" to ="20" index="i"&gt;
+  &lt;/cfloop&gt;
+&lt;/cffunction&gt;
+</pre>
+</td>
 
--- NOT THIS --
-<cffunction name="myFunction" access="public" returntype="void" output="false" hint="This methods does nothing">
-<cfquery name="qGet">
-</cfquery>
-<cfloop from="1" to ="20" index="i">
-</cfloop>
-</cffunction>
-```
+<td>
+<pre lang="js">
+&lt;cffunction name="myFunction" access="public" returntype="void" output="false" hint="This methods does nothing"&gt;
+&lt;cfquery name="qGet"&gt;
+&lt;/cfquery&gt;
+&lt;cfloop from="1" to ="20" index="i"&gt;
+&lt;/cfloop&gt;
+&lt;/cffunction&gt;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 **[[⬆]](#TOC)**
 ### <a name="cfc-output">Output From CFCs</a>
@@ -716,79 +1065,149 @@ Use `cflock` whenever you need to make your code thread safe. This applies to va
 * Good locking article: http://www.adobe.com/devnet/server_archive/articles/cf_locking_best_practices.html
 * Do not overinflate the code within lock tags. Locking code should only occur on small bits of code and when you are acessing the shared resource. Of course, there are special ocassions to do more than just saving in shared scope, but use it as a rule of thumb.
 
-```coldfusion
--- DO THIS --
-<cflock name="FileOperation" timeout="20" throwOnTimeout="true">
-<cffile action="write" file="#filePath#" output="#content#">
-</cflock>
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+&lt;cflock name="FileOperation" timeout="20" throwOnTimeout="true"&gt;
+&lt;cffile action="write" file="#filePath#" output="#content#"&gt;
+&lt;/cflock&gt;
 <!-- application scope is exclusively locked on the cache -->
-<cflock type="readonly" scope="application" timeout="10" throwOnTimeout="true">
-<cfset myVar = application.cache.getValue("x")>
-</cflock>
-<cfquery name="variables.qUser" datasource="#request.dsn#">
+&lt;cflock type="readonly" scope="application" timeout="10" throwOnTimeout="true"&gt;
+&lt;cfset myVar = application.cache.getValue("x")&gt;
+&lt;/cflock&gt;
+&lt;cfquery name="variables.qUser" datasource="#request.dsn#"&gt;
 SELECT FirstName, LastName
 FROM Users
 WHERE UserID = #request.UserID#
-</cfquery>
-<cflock scope="application" timeout="2" type="exclusive">
-<cfset application.qUser=variables.qUser>
-</cflock>
--- NOT THIS --
-<cflock name="FileOperation" >
-<cffile action="write" file="#filePath#" output="#content#">
-</cflock>
-<cfset myVar = application.cache.getValue("x")>
-<cflock scope="application" timeout="2" type="exclusive">
-<cfquery name="application.qUser" datasource="#request.dsn#">
+&lt;/cfquery&gt;
+&lt;cflock scope="application" timeout="2" type="exclusive"&gt;
+&lt;cfset application.qUser=variables.qUser&gt;
+&lt;/cflock&gt;
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+&lt;cflock name="FileOperation" &gt;
+&lt;cffile action="write" file="#filePath#" output="#content#"&gt;
+&lt;/cflock&gt;
+&lt;cfset myVar = application.cache.getValue("x")&gt;
+&lt;cflock scope="application" timeout="2" type="exclusive"&gt;
+&lt;cfquery name="application.qUser" datasource="#request.dsn#"&gt;
 SELECT FirstName, LastName
 FROM Users
 WHERE UserID = #request.UserID#
-</cfquery>
-</cflock>
-```
+&lt;/cfquery&gt;
+&lt;/cflock&gt;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 **[[⬆]](#TOC)**
 
 ### Race Conditions
 There will be cases where you need to do a double tests in order to avoid race conditions on shared resources. This strategy can be applied when you need to test, for example, if a resource is created, an object is configured, etc. What this strategy does is provide two if statement criterias that can verify behavior on the resource, squished between a `cflock` tag. This prevents threads that have already entered the locking stage and are waiting execution, to re-execute the locked code.
 
-```coldfusion
--- DO THIS --
-<cfif not structKeyExists(application,"controller")>
-   <cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive">
-      <cfif not structKeyExists(application,"controller")>
-         <cfset application.controller = createObject("component","coldbox.MainController").init()>
-      </cfif>
-   </cflock>
-</cfif>
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
 
--- NOT THIS --
-<cfif not structKeyExists(application,"controller")>
-   <cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive">
-      <cfset application.controller = createObject("component","coldbox.MainController").init()>
-   </cflock>
-</cfif>
-```
+<td>
+<pre lang="js">
+&lt;cfif not structKeyExists(application,"controller")&gt;
+   &lt;cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive"&gt;
+      &lt;cfif not structKeyExists(application,"controller")&gt;
+         &lt;cfset application.controller = createObject("component","coldbox.MainController").init()&gt;
+      &lt;/cfif&gt;
+   &lt;/cflock&gt;
+&lt;/cfif&gt;
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+&lt;cfif not structKeyExists(application,"controller")&gt;
+   &lt;cflock name="mainControllerCreation" timeout="20" throwOnTimeout="true" type="exclusive"&gt;
+      &lt;cfset application.controller = createObject("component","coldbox.MainController").init()&gt;
+   &lt;/cflock&gt;
+&lt;/cfif&gt;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
+
+</tr>
+
+</table>
+
+
 As you can see from the previous code snippet, if you do not have the double if statements, then code that is waiting on the lock, will re-execute the creation of the controller object. Therefore, since we can test the resource state, we can provide a multi-thread safety net.
 
 ### Do Not Abuse Pound Signs
 Pound signs are most often used to output variables to their set values or evaluate them. There are many places where you DO NOT need to place hash signs. This only delays the evaluation and is not best practice. Most likely you will only need to use pound signs when using ''cfoutput'' or when dealing with certain tag attributes that require the evaluation of a variable.
 
-```coldfusion
--- DO THIS --
-<cfset name = request.firstname>
-<cfif isValid></cfif>
-<cfset SomeVar = Var1 + Max(Var2, 10* Var3) + Var4>
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
 
--- NOT THIS --
-<cfset name = #request.firstname#>
-<cfif #isValid#></cfif>
-<cfset #SomeVar# = #Var1# + #Max(Var2, 10* Var3)# + #Var4#>
-```
+<td>
+<pre lang="js">
+&lt;cfset name = request.firstname&gt;
+&lt;cfif isValid&gt;&lt;/cfif&gt;
+&lt;cfset SomeVar = Var1 + Max(Var2, 10* Var3) + Var4&gt;
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+&lt;cfset name = #request.firstname#&gt;
+&lt;cfif #isValid#&gt;&lt;/cfif&gt;
+&lt;cfset #SomeVar# = #Var1# + #Max(Var2, 10* Var3)# + #Var4#&gt;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 **[[⬆]](#TOC)**
 
-### More General Recomendations
+### More General Recommendations
 
 * Components are supposed to be objects and have an identity. Always ask yourself what this component's responsibilities are and how will it interact with its surroundings.
 * Variables pass in and out of components by **reference** or by value based on the same rules as the rest of CFML. For instance, strings, arrays, numbers, and dates all pass by value, but structures, queries, and all other "complex" objects (including CFC instances) pass by reference.
@@ -800,71 +1219,160 @@ Pound signs are most often used to output variables to their set values or evalu
 * Use interfaces when you want to provide clear API definitions that need to be implemented. They can be good documentation tools and provide compile time checks on your code.
 * Use `structKeyExists` instead of `isDefined` when checking for existence.
 
-```js
--- DO THIS --
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 if( structKeyExists( arguments, "car" ) )
 if( arguments.exists( "car" ) )
+</pre>
+</td>
 
--- NOT THIS --
+<td>
+<pre lang="js">
 if( isDefined("arguments.car") )
-```
+<br />&nbsp;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 * Use `cfswitch` instead of `cfif` if you have a specific expression that you can evaluate against and if you will have more than 2 `cfelseif` clauses. Not only does it provide more readability, but your code will make more sense.
 * Avoid usage of `iif` if at all possible as it is documented to be slower. However, sometimes it can prove handy.
 * Avoid usage of `evaluate()` expressions. They have to be evaluated by the ColdFusion engine and will always run slower. There are times when you will have to use them, especially when doing dynamic concatenations, but try to avoid them at all possible.
 
-```
--- DO THIS --
-<cfset value = form[ "field#i#" ]>
--- NOT THIS --
-<cfset value = evaluate("form.field#i#")>
-```
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+&lt;cfset value = form[ "field#i#" ]&gt;
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+&lt;cfset value = evaluate("form.field#i#")&gt;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 * Use boolean evaluations
 
-```
--- DO THIS --
-<cfif len(firstName)></cfif>
-<cfif NOT obj.isEmpty()></cfif>
-<cfif query.recordcount></cfif>
-<cfif arrayLen(myArray)></cfif>
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
 
--- NOT THIS --
-<cfif firstName eq ""></cfif>
-<cfif obj.isEmpty() eq false></cfif>
-<cfif query.recordcount gt 0></cfif>
-<cfif arrayLen(myArray) gt 0></cfif>
-```
+<td>
+<pre lang="js">
+&lt;cfif len(firstName)&gt;&lt;/cfif&gt;
+&lt;cfif NOT obj.isEmpty()&gt;&lt;/cfif&gt;
+&lt;cfif query.recordcount&gt;&lt;/cfif&gt;
+&lt;cfif arrayLen(myArray)&gt;&lt;/cfif&gt;
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+&lt;cfif firstName eq ""&gt;&lt;/cfif&gt;
+&lt;cfif obj.isEmpty() eq false&gt;&lt;/cfif&gt;
+&lt;cfif query.recordcount gt 0&gt;&lt;/cfif&gt;
+&lt;cfif arrayLen(myArray) gt 0&gt;&lt;/cfif&gt;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 * When you are creating view templates, try to always surround it with `cfoutput` tag, instead of nesting them all over the place.
 
-```
--- DO THIS --
-<cfoutput>
-<html>
-<head>
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="html">
+&lt;cfoutput&gt;
+&lt;html&gt;
+&lt;head&gt;
 #head#
-</head>
-<body>
+&lt;/head&gt;
+&lt;body&gt;
 #leftBar#
 #content#
 #footer#
-</body>
-</html>
-</cfoutput>
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;/cfoutput&gt;
+</pre>
+</td>
 
--- NOT THIS --
-<html>
-<head>
-<cfoutput>#head#</cfoutput>
-</head>
-<body>
-<cfoutput>#leftBar#</cfoutput>
-<cfoutput>#body#</cfoutput>
-<cfoutput>#footer#</cfoutput>
-</body>
-</html>
-```
+<td>
+<pre lang="html">
+&lt;html&gt;
+&lt;head&gt;
+&lt;cfoutput&gt;#head#&lt;/cfoutput&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;cfoutput&gt;#leftBar#&lt;/cfoutput&gt;
+&lt;cfoutput&gt;#body#&lt;/cfoutput&gt;
+&lt;cfoutput&gt;#footer#&lt;/cfoutput&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
+
+</tr>
+
+</table>
+
 * Code for portability. Avoid at all costs on hardcoding paths, urls, file locations, etc. If you are using a framework, which you should, they usually provide a way to setup application global variables. If not within a framework context, try to set global variables in a shared scope such as `application` scope once when your application loads and then just grab settings from it. Always believe that your application locations can change. 
 
 * Prefer double quotation marks for denoting strings.
