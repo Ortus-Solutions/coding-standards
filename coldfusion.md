@@ -878,15 +878,37 @@ This gives access to data to only public/package member functions of the CFC. Yo
 -   It hides your implementation from the outside world
 
   
-```js
--- THESE ARE GOOD --
+<!-- changed to a side by side table for easier visual comparison -->
+<!-- changed labels from "THESE ARE GOOD" / "THESE ARE BAD" to "DO THIS" / "NOT THIS" for consistency -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 stuff = myCFC.getStuff();
 myCFC.setStuff( stuff );
+</pre>
+</td>
 
--- THESE ARE BAD --
+<td>
+<pre lang="js">
 stuff = myCFC.stuff;
 myCFC.stuff = stuff;
-```
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 **[[⬆]](#TOC)**
 
