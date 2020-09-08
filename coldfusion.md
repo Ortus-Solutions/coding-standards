@@ -1065,36 +1065,60 @@ Use `cflock` whenever you need to make your code thread safe. This applies to va
 * Good locking article: http://www.adobe.com/devnet/server_archive/articles/cf_locking_best_practices.html
 * Do not overinflate the code within lock tags. Locking code should only occur on small bits of code and when you are acessing the shared resource. Of course, there are special ocassions to do more than just saving in shared scope, but use it as a rule of thumb.
 
-```coldfusion
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
  ✅ DO THIS
-<cflock name="FileOperation" timeout="20" throwOnTimeout="true">
-<cffile action="write" file="#filePath#" output="#content#">
-</cflock>
-<!-- application scope is exclusively locked on the cache -->
-<cflock type="readonly" scope="application" timeout="10" throwOnTimeout="true">
-<cfset myVar = application.cache.getValue("x")>
-</cflock>
-<cfquery name="variables.qUser" datasource="#request.dsn#">
-SELECT FirstName, LastName
-FROM Users
-WHERE UserID = #request.UserID#
-</cfquery>
-<cflock scope="application" timeout="2" type="exclusive">
-<cfset application.qUser=variables.qUser>
-</cflock>
+</th>
+<th>
 ❌ NOT THIS
-<cflock name="FileOperation" >
-<cffile action="write" file="#filePath#" output="#content#">
-</cflock>
-<cfset myVar = application.cache.getValue("x")>
-<cflock scope="application" timeout="2" type="exclusive">
-<cfquery name="application.qUser" datasource="#request.dsn#">
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+&lt;cflock name="FileOperation" timeout="20" throwOnTimeout="true"&gt;
+&lt;cffile action="write" file="#filePath#" output="#content#"&gt;
+&lt;/cflock&gt;
+<!-- application scope is exclusively locked on the cache -->
+&lt;cflock type="readonly" scope="application" timeout="10" throwOnTimeout="true"&gt;
+&lt;cfset myVar = application.cache.getValue("x")&gt;
+&lt;/cflock&gt;
+&lt;cfquery name="variables.qUser" datasource="#request.dsn#"&gt;
 SELECT FirstName, LastName
 FROM Users
 WHERE UserID = #request.UserID#
-</cfquery>
-</cflock>
-```
+&lt;/cfquery&gt;
+&lt;cflock scope="application" timeout="2" type="exclusive"&gt;
+&lt;cfset application.qUser=variables.qUser&gt;
+&lt;/cflock&gt;
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+&lt;cflock name="FileOperation" &gt;
+&lt;cffile action="write" file="#filePath#" output="#content#"&gt;
+&lt;/cflock&gt;
+&lt;cfset myVar = application.cache.getValue("x")&gt;
+&lt;cflock scope="application" timeout="2" type="exclusive"&gt;
+&lt;cfquery name="application.qUser" datasource="#request.dsn#"&gt;
+SELECT FirstName, LastName
+FROM Users
+WHERE UserID = #request.UserID#
+&lt;/cfquery&gt;
+&lt;/cflock&gt;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 **[[⬆]](#TOC)**
 
