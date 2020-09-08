@@ -675,26 +675,58 @@ return(structKeyExists(local,"results")?local.results:"null");
 
 When using method chaining and libraries that encourage this, remember that they do it for convenience and also readability. Do not chain for up to 1000 levels, use 2 or 3 and then break.
 
-``` js
-// DO THIS
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 obj.$( "test", this ).$args( 1,2,3,4 ).$results( this )
   .$( "another", method() )
   .$( "another", method());
-
+<br />
 map( "MyCFC" )
   .toPath( "this.path.Component" )
   .asSingleton();
-
+<br />
 var c = newCriteria()
   .isEq( "id", arguments.id )
   .createAlias( "orders", "o" )
   .isIn( "o.tags", arguments.tags );
+</pre>
+</td>
 
-// NOT THIS
+<td>
+<pre lang="js">
 obj.$("test", this).$args(1,2,3,4).$results(this).$("another", method() );
+
 map( "MyCFC" ).toPath( "this.path.Component" ).asSingleton();
+
 var c = newCriteria().isEq( "id", arguments.id ).createAlias( "orders", "o" ).isIn( "o.tags", arguments.tags );
-```
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 
 **[[⬆]](#TOC)**
@@ -703,13 +735,35 @@ var c = newCriteria().isEq( "id", arguments.id ).createAlias( "orders", "o" ).is
 
 Prefer the `new` declaration over the `createObject` declaration to improve readability:
 
-``` js
-// do this
-obj = new coldbox.system.testing.TestBox();
 
-// dont this
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+obj = new coldbox.system.testing.TestBox();
+</pre>
+</td>
+
+<td>
+<pre lang="js">
 obj = createObject( "component", "coldbox.system.testing.testBox" ).init();
-```
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 
 > However, please note that this conventions are only if you are writing libraries. If you are within an ecosystem that provides WireBox Dependency Injection, then **always** prefer WireBox.
