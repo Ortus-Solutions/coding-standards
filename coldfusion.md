@@ -435,8 +435,20 @@ This is more of a convenience for readability and preference, but these are the 
 
 Code blocks should start in one line and end in another.
 
-```js
-// DO THIS
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 component{
 }
 
@@ -459,8 +471,11 @@ if( false ){
 } else if( XX ){
 } else {
 }
+</pre>
+</td>
 
-// NOT THIS
+<td>
+<pre lang="js">
 component
 {
 }
@@ -476,7 +491,12 @@ if()
 }
 else{ 
 }
-```
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 
 
@@ -486,8 +506,20 @@ else{
 
 When declaring 4 arguments or more go into multi-line layout
 
-```coldfusion
-// DO THIS
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 function testThis(
 	required name,
 	required any target,
@@ -498,12 +530,25 @@ function testThis(
   ... function here
 
 }
+</pre>
+</td>
 
-// NOT THIS
+<td>
+<pre lang="js">
 function testThis(required name, required any target, boolean isHappy="true", any results){
 }
-```
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
 
+</tr>
+
+</table>
 
 
 **[[⬆]](#TOC)**
