@@ -93,6 +93,7 @@ AVOID abbreviations if possible. For example, `calculateSalary()` is a better me
 
 Acronyms should be avoided in names, but if they must be used, then treat them with the same Camelcase rules for classes or methods/arguments/variables:
 
+<!-- changed to a side by side table for easier visual comparison -->
 |      ✅ DO THIS         |      ❌ NOT THIS        |
 |-------------------------|-------------------------|
 | ```UrlScanner.cfc```    | ```url-scanner.cfc```   |
@@ -138,6 +139,7 @@ The best practice is to use packaging by functionality if at all possible. This 
 
 Class/Component/Interface names should be nouns, as they represent most likely things or objects. They should be written in camel case with only the **first** letter capitalized for each word. Use whole words and avoid acronyms and abbreviations if possible. Interfaces should begin with the letter **I**. Base or abstract classes should denote themselves in the name as well as either **BaseClass or AbstractClass**. Examples:
 
+<!-- changed to a side by side table for easier visual comparison -->
 |  ✅ DO THIS  | ❌ NOT THIS      |
 |----------------|---------------------|
 | ```URLConverter```   | ```urlConverter```       |
@@ -157,6 +159,7 @@ Class/Component/Interface names should be nouns, as they represent most likely t
 
 Methods should be verbs, in mixed camel case with the **first** letter lower cased and then each internal first letter of words capitalized. Examples:
 
+<!-- changed to a side by side table for easier visual comparison -->
 <table>
 <tr>
 <th>
@@ -199,6 +202,7 @@ ISLocated()
 
 All ColdFusion type names in arguments, return types and the like should all be in lower case when they are native ColdFusion types. If they are components they should be the EXACT name of the component. This is extermely important if for some reason the code executes in a case-sensitive system, then the code will not work. ALWAYS have the exact case of components and definitions. If no type is defined, then it is assumed it is uses the **any** type.
 
+<!-- changed to a side by side table for easier visual comparison -->
 <table>
 <tr>
 <th>
@@ -239,6 +243,7 @@ SecurityService function getSecurityService();
 
 All CFML and custom tags should be writing in lower case form, just like HTML tags. Attributes for CFML tags should follow the same behavior as arguments and variables as seen below. If attributes can all be placed in one line, then do that. However, if they will span and cause breaks, consider breaking the attributes into multiple lines and aligning them to the first attribute. Usually, you can do 2 or 3 in one line, else break. Same goes for method calls.
 
+<!-- changed to a side by side table for easier visual comparison -->
 <table>
 <tr>
 <th>
@@ -292,6 +297,7 @@ throwOnError="Yes"/&gt;
 
 They should be descriptive lowercase single words, acronyms or abbreviations. If multiple words are necessary they should follow camel case with first letter lowercase. Examples:
 
+<!-- changed to a side by side table for easier visual comparison -->
 <table>
 <tr>
 <th>
@@ -360,6 +366,7 @@ average-salary = "323";
 
 They should all be in upper case separated by underscores "\_". Examples:
 
+<!-- changed to a side by side table for easier visual comparison -->
 <table>
 <tr>
 <th>
@@ -435,6 +442,7 @@ This is more of a convenience for readability and preference, but these are the 
 
 Code blocks should start in one line and end in another.
 
+<!-- changed to a side by side table for easier visual comparison -->
 <table>
 <tr>
 <th>
@@ -507,6 +515,7 @@ else{
 
 When declaring 4 arguments or more go into multi-line layout
 
+<!-- changed to a side by side table for easier visual comparison -->
 <table>
 <tr>
 <th>
@@ -558,6 +567,7 @@ function testThis(required name, required any target, boolean isHappy="true", an
 
 When calling a function with 4 arguments or more go into multi-line layout:
 
+<!-- changed to a side by side table for easier visual comparison -->
 <table>
 <tr>
 <th>
@@ -604,9 +614,21 @@ obj.callMethod( target=this, name="luis", results=true, moreData="false" );
 
 Try to always leave a start and ending whitespace for parenthesis code like in method calls, evaluations, etc.
 
-```js
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
 
-// DO THIS
+<td>
+<pre lang="js">
 obj.callMethod( 
 	target 		= this,
 	name 		= "luis",
@@ -621,8 +643,11 @@ if( x lt 4 ){
 for( var x=1; x lte 45; x++ ){
 }
 return ( structKeyExists( local, "results" ) ? local.results : "null" );
+</pre>
+</td>
 
-// NOT THIS
+<td>
+<pre lang="js">
 obj.callMethod(target=this, name="luis", results=true, moreData="false"); 
 obj.test(this);
 obj.setData(1*total+4);
@@ -631,8 +656,17 @@ if(x lt 4){
 for(var x=1;x lte 45;x++ ){
 }
 return(structKeyExists(local,"results")?local.results:"null");
-```
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
 
+</tr>
+
+</table>
 
 **[[⬆]](#TOC)**
 
