@@ -471,6 +471,7 @@ if( false ){
 } else if( XX ){
 } else {
 }
+<br />&nbsp;
 </pre>
 </td>
 
@@ -557,19 +558,43 @@ function testThis(required name, required any target, boolean isHappy="true", an
 
 When calling a function with 4 arguments or more go into multi-line layout:
 
-``` js
-// DO THIS
+<table>
+<tr>
+<th>
+ ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 obj.callMethod( 
 	target 		= this,
 	name 		= "luis",
 	results		= true,
 	moreData 	= "false" 
 ); 
+</pre>
+</td>
 
-// NOT THIS
+<td>
+<pre lang="js">
 obj.callMethod( target=this, name="luis", results=true, moreData="false" ); 
-```
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
 
+</tr>
+
+</table>
 
 **[[⬆]](#TOC)**
 
