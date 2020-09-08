@@ -1172,21 +1172,42 @@ As you can see from the previous code snippet, if you do not have the double if 
 ### Do Not Abuse Pound Signs
 Pound signs are most often used to output variables to their set values or evaluate them. There are many places where you DO NOT need to place hash signs. This only delays the evaluation and is not best practice. Most likely you will only need to use pound signs when using ''cfoutput'' or when dealing with certain tag attributes that require the evaluation of a variable.
 
-```coldfusion
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
  ✅ DO THIS
-<cfset name = request.firstname>
-<cfif isValid></cfif>
-<cfset SomeVar = Var1 + Max(Var2, 10* Var3) + Var4>
-
+</th>
+<th>
 ❌ NOT THIS
-<cfset name = #request.firstname#>
-<cfif #isValid#></cfif>
-<cfset #SomeVar# = #Var1# + #Max(Var2, 10* Var3)# + #Var4#>
-```
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+&lt;cfset name = request.firstname&gt;
+&lt;cfif isValid&gt;&lt;/cfif&gt;
+&lt;cfset SomeVar = Var1 + Max(Var2, 10* Var3) + Var4&gt;
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+&lt;cfset name = #request.firstname#&gt;
+&lt;cfif #isValid#&gt;&lt;/cfif&gt;
+&lt;cfset #SomeVar# = #Var1# + #Max(Var2, 10* Var3)# + #Var4#&gt;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 **[[⬆]](#TOC)**
 
-### More General Recomendations
+### More General Recommendations
 
 * Components are supposed to be objects and have an identity. Always ask yourself what this component's responsibilities are and how will it interact with its surroundings.
 * Variables pass in and out of components by **reference** or by value based on the same rules as the rest of CFML. For instance, strings, arrays, numbers, and dates all pass by value, but structures, queries, and all other "complex" objects (including CFC instances) pass by reference.
@@ -1198,71 +1219,160 @@ Pound signs are most often used to output variables to their set values or evalu
 * Use interfaces when you want to provide clear API definitions that need to be implemented. They can be good documentation tools and provide compile time checks on your code.
 * Use `structKeyExists` instead of `isDefined` when checking for existence.
 
-```js
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
  ✅ DO THIS
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
 if( structKeyExists( arguments, "car" ) )
 if( arguments.exists( "car" ) )
+</pre>
+</td>
 
-❌ NOT THIS
+<td>
+<pre lang="js">
 if( isDefined("arguments.car") )
-```
+<br />&nbsp;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 * Use `cfswitch` instead of `cfif` if you have a specific expression that you can evaluate against and if you will have more than 2 `cfelseif` clauses. Not only does it provide more readability, but your code will make more sense.
 * Avoid usage of `iif` if at all possible as it is documented to be slower. However, sometimes it can prove handy.
 * Avoid usage of `evaluate()` expressions. They have to be evaluated by the ColdFusion engine and will always run slower. There are times when you will have to use them, especially when doing dynamic concatenations, but try to avoid them at all possible.
 
-```
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
  ✅ DO THIS
-<cfset value = form[ "field#i#" ]>
+</th>
+<th>
 ❌ NOT THIS
-<cfset value = evaluate("form.field#i#")>
-```
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+&lt;cfset value = form[ "field#i#" ]&gt;
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+&lt;cfset value = evaluate("form.field#i#")&gt;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 * Use boolean evaluations
 
-```
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
  ✅ DO THIS
-<cfif len(firstName)></cfif>
-<cfif NOT obj.isEmpty()></cfif>
-<cfif query.recordcount></cfif>
-<cfif arrayLen(myArray)></cfif>
-
+</th>
+<th>
 ❌ NOT THIS
-<cfif firstName eq ""></cfif>
-<cfif obj.isEmpty() eq false></cfif>
-<cfif query.recordcount gt 0></cfif>
-<cfif arrayLen(myArray) gt 0></cfif>
-```
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="js">
+&lt;cfif len(firstName)&gt;&lt;/cfif&gt;
+&lt;cfif NOT obj.isEmpty()&gt;&lt;/cfif&gt;
+&lt;cfif query.recordcount&gt;&lt;/cfif&gt;
+&lt;cfif arrayLen(myArray)&gt;&lt;/cfif&gt;
+</pre>
+</td>
+
+<td>
+<pre lang="js">
+&lt;cfif firstName eq ""&gt;&lt;/cfif&gt;
+&lt;cfif obj.isEmpty() eq false&gt;&lt;/cfif&gt;
+&lt;cfif query.recordcount gt 0&gt;&lt;/cfif&gt;
+&lt;cfif arrayLen(myArray) gt 0&gt;&lt;/cfif&gt;
+</pre>
+</td>
+
+</tr>
+
+</table>
 
 * When you are creating view templates, try to always surround it with `cfoutput` tag, instead of nesting them all over the place.
 
-```
+<!-- changed to a side by side table for easier visual comparison -->
+<table>
+<tr>
+<th>
  ✅ DO THIS
-<cfoutput>
-<html>
-<head>
+</th>
+<th>
+❌ NOT THIS
+</th>
+</tr>
+	
+<tr>
+
+<td>
+<pre lang="html">
+&lt;cfoutput&gt;
+&lt;html&gt;
+&lt;head&gt;
 #head#
-</head>
-<body>
+&lt;/head&gt;
+&lt;body&gt;
 #leftBar#
 #content#
 #footer#
-</body>
-</html>
-</cfoutput>
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;/cfoutput&gt;
+</pre>
+</td>
 
-❌ NOT THIS
-<html>
-<head>
-<cfoutput>#head#</cfoutput>
-</head>
-<body>
-<cfoutput>#leftBar#</cfoutput>
-<cfoutput>#body#</cfoutput>
-<cfoutput>#footer#</cfoutput>
-</body>
-</html>
-```
+<td>
+<pre lang="html">
+&lt;html&gt;
+&lt;head&gt;
+&lt;cfoutput&gt;#head#&lt;/cfoutput&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;cfoutput&gt;#leftBar#&lt;/cfoutput&gt;
+&lt;cfoutput&gt;#body#&lt;/cfoutput&gt;
+&lt;cfoutput&gt;#footer#&lt;/cfoutput&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+<br />&nbsp;
+<br />&nbsp;
+</pre>
+</td>
+
+</tr>
+
+</table>
+
 * Code for portability. Avoid at all costs on hardcoding paths, urls, file locations, etc. If you are using a framework, which you should, they usually provide a way to setup application global variables. If not within a framework context, try to set global variables in a shared scope such as `application` scope once when your application loads and then just grab settings from it. Always believe that your application locations can change. 
 
 * Prefer double quotation marks for denoting strings.
