@@ -29,11 +29,11 @@ The most important fact is that the `GET` method should be used for idempotent t
 Thanks to Roger Benningfield: 
 
 <blockquote>
-"Allowing GET requests to change the state of server resources can be a very dangerous game, without so much as a whiff of malicious behavior. An app that allows clients to change or delete data just by fetching a URI is asking for trouble in 2006."
+"Allowing GET requests to change the state of server resources can be a very dangerous game, without so much as a whiff of malicious behavior. An app that allows clients to change or delete data just by fetching a URI is asking for trouble in 2020."
 
 </blockquote>
 
-There is a time for using `GET` and a time for using `POST,PUT,DELETE` and **ALL OF THEM should not trust the client data**. 
+There is a time for using `GET` and a time for using `POST,PUT,DELETE` and **NONE OF THEM should trust the client data**. 
 
 **[[⬆]](#TOC)**
 
