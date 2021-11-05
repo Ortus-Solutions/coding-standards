@@ -46,7 +46,7 @@ At Ortus, our preference is to levarage Hibernate ORM with additional SQL additi
 ```
 
 -   Do not use numbers in names. This is poor design, indicating divided table structures.
--   Do not use dot (`.`) separator between names, remember use camel casing. This way you will avoid problems whend doing SQL statements as fields are accessed using dot notation.
+-   Do not use dot (`.`) separator between names, remember use camel casing. This way you will avoid problems when doing SQL statements as fields are accessed using dot notation.
 -   It goes without saying, do not use reserved database words in any name.
 -   Always try to use names that make sense and are descriptive of their purpose.
 -   Avoid abbreviations whenever possible. ONLY use abbreviations that are well known and documented.
