@@ -41,23 +41,20 @@
 
 This document is intended to be a concise summary of best practices for anyone building CFML applications within the Ortus team. Several external resources used when creating this document. Please note that this is a guideline based on past development experience and industry standards. Please use common sense when applying them and note that this document is ever changing as development trends continue to change.
 
+* Hardly any software is maintained by the original author. Be Kind!
+* Coding conventions improve readability, code reviews, and just bring sanity to a team
+* Automated documentation tools like [DocBox](https://docbox.ortusbooks.com/) will help generate automated documentation from all of your source code.  Use it!
+
 **[[⬆]](#TOC)**
 
 
 ## <a name="idetools">IDE Tools</a>
 
-We have created several IDE formatter tools and some Sublime packages we use:
-
-* [CFBuilder Formatter](https://drive.google.com/open?id=0B3aRjVTf2SeqNmFBZmZJVjR5TUU)
-* [CFBuilder Preferences](https://drive.google.com/open?id=0B3aRjVTf2Seqb2pQMnVIQ0NSLTA)
-* [CFBuilder/Eclipse Java Cleanup](https://drive.google.com/open?id=0B3aRjVTf2SeqSUZDbW5UUjVwOU0)
-* [CFBuilder/Eclipse Java Formatter](https://drive.google.com/open?id=0B3aRjVTf2SeqSndHZEppUmdQLUU)
-* [CFBuilder/Eclipse JavaScript Formatter](https://drive.google.com/open?id=0B3aRjVTf2SeqRlctSDhtZDRoRmM)
-* [Sublime Alignment](https://www.granneman.com/webdev/editors/sublime-text/packages/how-to-install-and-use-sublime-alignment/)
-* [Sublime Emmet](https://packagecontrol.io/packages/Emmet)
-* [Sublime Bracket Highlighter](https://packagecontrol.io/packages/BracketHighlighter)
-* [Sublime DockBlockr](https://packagecontrol.io/packages/DocBlockr)
-* [Sublime Markdown](https://packagecontrol.io/packages/Markdown%20Preview)
+* [VSCode ColdBox](https://marketplace.visualstudio.com/items?itemName=ortus-solutions.vscode-coldbox)
+* [VSCode CommandBox](https://marketplace.visualstudio.com/items?itemName=ortus-solutions.vscode-commandbox)
+* [VSCode TestBox](https://marketplace.visualstudio.com/items?itemName=ortus-solutions.vscode-testbox)
+* [Eclipse Java Cleanup](https://drive.google.com/open?id=0B3aRjVTf2SeqSUZDbW5UUjVwOU0)
+* [Java Styles](https://github.com/Ortus-Solutions/coding-standards/blob/master/ortus-java-style.xml)
 * [Sublime ColdBox Platform](https://packagecontrol.io/packages/ColdBox%20Platform)
 
 **[[⬆]](#TOC)**
@@ -105,7 +102,6 @@ Acronyms should be avoided in names, but if they must be used, then treat them w
 | ```XmlHttpRequest.cfc```| ```XmlHTTPRequest.cfc```|
 
 
-* [CFC Tips](http://cfdj.sys-con.com/read/41660.htm)
 * [Java Coding Standards](http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html)
 
 
@@ -115,12 +111,12 @@ Acronyms should be avoided in names, but if they must be used, then treat them w
   
 ### <a name="package-names">Package Names</a>
 
-Package names should be unique and in lowercase letters. Underscores may be used or hyphens if necessary. You can package your objects/files using two well known approaches:
+Package names should be unique and in lowercase letters. Underscores may be used or hyphens if necessary, but try to avoid them. You can package your objects/files using two well known approaches:
 
 1.  By Functionality (Best Practice)
 2.  By object types
 
-The best practice is to use packaging by functionality if at all possible. This creates better packaging layout and maintenability. Here is an example from an application's model or business layer folder:
+The best practice is to use packaging by functionality if at all possible.  Here is an example from an application's model or business layer folder:
 
 ```
 - model
@@ -128,6 +124,9 @@ The best practice is to use packaging by functionality if at all possible. This 
   - remote-api
   - products
   - users
+  - customers
+    - invoices
+    - templates
   - conversions
   - util
 ```
@@ -158,7 +157,7 @@ Class/Component/Interface names should be nouns, as they represent most likely t
 
 ### <a name="methods">Methods</a>
 
-Methods should be verbs, in mixed camel case with the **first** letter lower cased and then each internal first letter of words capitalized. Examples:
+Methods should be verbs, in mixed camel case with the **first** letter lower cased and then each internal first letter of words capitalized.  If the method returns a boolean, try to use a boolean readable expression.  Examples:
 
 <!-- changed to a side by side table for easier visual comparison -->
 <table>
@@ -187,7 +186,7 @@ isLocated()
 RUN()
 dothis()
 executeINBackGround()
-ISLocated()
+located()
 </pre>
 </td>
 
@@ -434,7 +433,7 @@ max = "123";
 
 ## <a name="whitespace">Whitespaces</a>
 
-This is more of a convenience for readability and preference, but these are the standards we set forward for consistency.
+This is more of a convenience for readability and preference, but these are the standards we set forward for consistency and for making code reviews easier to scan with the eyes.
 
 
 **[[⬆]](#TOC)**
@@ -797,11 +796,14 @@ Yes, you will need to document **ALL** of your code, from classes to property de
 
 ``` js
 /**
-* @author Luis Majano
-* My component documentation
-* goes here in multiple lines if needed
-* You can add <a href='http://www.coldbox.org'>links</a> and valid HTML if needed
-*/
+ * @author Luis Majano
+ * 
+ * My component documentation
+ * goes here in multiple lines if needed
+ * You can add <a href='http://www.coldbox.org'>links</a> and valid HTML if needed
+ * 
+ * Copyright or License Information goes here
+ */
 component accessors="true"{
   
   /**
@@ -822,13 +824,20 @@ component accessors="true"{
   }
 
   /**
-  * Submit an order
-  * @product The product object
-  * @coupon The Coupon code needed
-  * @results The results object
-  */
-  function submitOrder( required product, coupon="", boolean results=true ){
+   * Submit an order
+   * 
+   * @product The product object
+   * @coupon The Coupon code needed
+   * @results The results object
+   * 
+   * @throws InvalidArgumentException - When an invalid product is sent
+   * @throws InvalidCouponCode - When an invalid coupon is sent
+   * 
+   * @return An Order object
+   */
+  Order function submitOrder( required product, coupon="", boolean results=true ){
   }
+
 }
 ```
 
