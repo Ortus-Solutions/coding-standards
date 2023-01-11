@@ -1,6 +1,7 @@
 # Ortus ColdFusion (CFML) Standards & Best Practices
 
-## <a name='TOC'>Table of Contents</a>
+<a name='TOC'></a>
+## Table of Contents
 
   1. [Introduction](#introduction)
   1. [IDE Tools](#idetools)
