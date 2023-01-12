@@ -2,8 +2,9 @@
 
 This guide was re-purposed for the Ortus Solutions team from the original author **Airbnb** (https://github.com/airbnb/javascript)
 
+<a name='TOC'></a>
 
-## <a name='TOC'>Table of Contents</a>
+## Table of Contents
 
   1. [Types](#types)
   1. [Objects](#objects)
