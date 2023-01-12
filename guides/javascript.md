@@ -1080,9 +1080,9 @@ This guide was re-purposed for the Ortus Solutions team from the original author
       (bar);
 
     // good
-    (foo) => bar;
-    (foo) => (bar);
-    (foo) => (
+    ( foo ) => bar;
+    ( foo ) => (bar);
+    ( foo ) => (
        bar
     )
     ```
@@ -2468,12 +2468,12 @@ This guide was re-purposed for the Ortus Solutions team from the original author
 ## Whitespace
 
   <a name="whitespace--spaces"></a><a name="18.1"></a>
-  - [19.1](#whitespace--spaces) Use soft tabs (space character) set to 2 spaces. eslint: [`indent`](https://eslint.org/docs/rules/indent)
+  - [19.1](#whitespace--spaces) Use tabs. eslint: [`indent`](https://eslint.org/docs/rules/indent)
 
     ```javascript
     // bad
     function foo() {
-    ∙∙∙∙let name;
+    ∙∙∙let name;
     }
 
     // bad
@@ -2483,7 +2483,7 @@ This guide was re-purposed for the Ortus Solutions team from the original author
 
     // good
     function baz() {
-    ∙∙let name;
+    ∙∙∙∙let name;
     }
     ```
 
@@ -2508,10 +2508,10 @@ This guide was re-purposed for the Ortus Solutions team from the original author
     });
 
     // good
-    dog.set('attr', {
+    dog.set( 'attr', {
       age: '1 year',
       breed: 'Bernese Mountain Dog',
-    });
+    } );
     ```
 
   <a name="whitespace--around-keywords"></a><a name="18.3"></a>
@@ -2524,7 +2524,7 @@ This guide was re-purposed for the Ortus Solutions team from the original author
     }
 
     // good
-    if (isJedi) {
+    if ( isJedi ) {
       fight();
     }
 
@@ -2777,39 +2777,39 @@ This guide was re-purposed for the Ortus Solutions team from the original author
     ```
 
   <a name="whitespace--in-parens"></a><a name="18.9"></a>
-  - [19.10](#whitespace--in-parens) Do not add spaces inside parentheses. eslint: [`space-in-parens`](https://eslint.org/docs/rules/space-in-parens)
+  - [19.10](#whitespace--in-parens) Add spaces inside parentheses. eslint: [`space-in-parens`](https://eslint.org/docs/rules/space-in-parens)
 
     ```javascript
     // bad
-    function bar( foo ) {
-      return foo;
-    }
-
-    // good
     function bar(foo) {
       return foo;
     }
 
+    // good
+    function bar( foo ) {
+      return foo;
+    }
+
     // bad
-    if ( foo ) {
+    if (foo) {
       console.log(foo);
     }
 
     // good
-    if (foo) {
-      console.log(foo);
+    if ( foo ) {
+      console.log( foo );
     }
     ```
 
   <a name="whitespace--in-brackets"></a><a name="18.10"></a>
-  - [19.11](#whitespace--in-brackets) Do not add spaces inside brackets. eslint: [`array-bracket-spacing`](https://eslint.org/docs/rules/array-bracket-spacing)
+  - [19.11](#whitespace--in-brackets) Add spaces inside brackets. eslint: [`array-bracket-spacing`](https://eslint.org/docs/rules/array-bracket-spacing)
 
     ```javascript
-    // bad
-    const foo = [ 1, 2, 3 ];
-    console.log(foo[ 0 ]);
-
     // good
+    const foo = [ 1, 2, 3 ];
+    console.log( foo[ 0 ] );
+
+    // bad
     const foo = [1, 2, 3];
     console.log(foo[0]);
     ```
@@ -2873,7 +2873,7 @@ This guide was re-purposed for the Ortus Solutions team from the original author
 
     // good
     function foo() { return true; }
-    if (foo) { bar = 0; }
+    if ( foo ) { bar = 0; }
     ```
 
   <a name="whitespace--comma-spacing"></a>
@@ -2886,7 +2886,7 @@ This guide was re-purposed for the Ortus Solutions team from the original author
 
     // good
     const foo = 1, bar = 2;
-    const arr = [1, 2];
+    const arr = [ 1, 2 ];
     ```
 
   <a name="whitespace--computed-property-spacing"></a>
@@ -2900,10 +2900,10 @@ This guide was re-purposed for the Ortus Solutions team from the original author
     obj[foo[ bar ]]
 
     // good
-    obj[foo]
-    obj['foo']
-    const x = { [b]: a }
-    obj[foo[bar]]
+    obj[ foo ]
+    obj[ 'foo' ]
+    const x = { [ b ]: a }
+    obj[ foo[ bar ] ]
     ```
 
   <a name="whitespace--func-call-spacing"></a>
