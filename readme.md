@@ -1,6 +1,8 @@
 # Ortus Coding Style Guides
 
-This repository includes all of the Ortus coding style guides, linter and formatting configurations.
+<img src="resources/ortus-spaceman.jpg" style="margin:20px 0px">
+
+This repository includes all of the Ortus coding style guides, linter and formatting configurations.  Read, collaborate and enjoy.
 
 ## Guides
 
