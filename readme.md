@@ -26,7 +26,7 @@ This repository includes all of the Ortus coding style guides, linter and format
 ## Formatters
 
 * [ColdFusion - CFFormat](formatters/.cfformat.json)
-* [ColdFusion - Submlime](formatters/cfml_format.sublime-settings)
+* [ColdFusion - Sublime](formatters/cfml_format.sublime-settings)
 * [Java - Eclipse/VSCode](formatters/ortus-java-style.xml)
 
 
